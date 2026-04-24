@@ -177,9 +177,9 @@ export default function Index() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="group relative overflow-hidden rounded-[2.5rem] shadow-lg cursor-pointer">
               <div className="absolute inset-0 bg-slate-900/40 z-10 group-hover:bg-slate-900/30 transition-colors"></div>
-              <img
-                src="https://images.unsplash.com/photo-1592424001807-6c846666ba59?q=80&w=2070&auto=format&fit=crop"
-                alt="Gardening"
+              <img 
+                src="https://images.unsplash.com/photo-1592424001807-6c846666ba59?q=80&w=2070&auto=format&fit=crop" 
+                alt="Gardening" 
                 className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 p-8 z-20 w-full bg-gradient-to-t from-slate-900/90 to-transparent">
