@@ -1,4 +1,4 @@
-import { Sun, Twitter, Instagram, Facebook, ArrowRight } from 'lucide-react';
+import { Sun, ArrowRight, MessageCircle, Heart, Share2 } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -21,14 +21,14 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a href="#" className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-800 text-slate-300 hover:bg-teal-600 hover:text-white transition-all hover:-translate-y-1">
-                <Twitter size={20} fill="currentColor" />
-              </a>
-              <a href="#" className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-800 text-slate-300 hover:bg-orange-500 hover:text-white transition-all hover:-translate-y-1">
-                <Instagram size={20} />
-              </a>
-              <a href="#" className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-800 text-slate-300 hover:bg-blue-600 hover:text-white transition-all hover:-translate-y-1">
-                <Facebook size={20} fill="currentColor" />
-              </a>
+             <MessageCircle size={20} fill="currentColor" />
+           </a>
+           <a href="#" className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-800 text-slate-300 hover:bg-orange-500 hover:text-white transition-all hover:-translate-y-1">
+             <Heart size={20} />
+           </a>
+           <a href="#" className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-800 text-slate-300 hover:bg-blue-600 hover:text-white transition-all hover:-translate-y-1">
+             <Share2 size={20} fill="currentColor" />
+           </a>
             </div>
           </div>
           
