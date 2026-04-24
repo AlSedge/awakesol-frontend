@@ -1,118 +1,93 @@
-import { useState } from 'react';
-import { Menu, X, Sunrise } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Menu, X, Sun } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
 
-  const handleScroll = (id: string) => {
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleScrollTo = (id: string) => {
     setIsMobileMenuOpen(false);
     if (!isHome) return;
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
   return (
-    <header className="sticky top-0 z-50 px-4 py-4 md:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="flex items-center justify-between rounded-full bg-white/80 px-6 py-4 shadow-sm backdrop-blur-md border border-stone-100">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-500 text-white">
-              <Sunrise size={24} strokeWidth={2.5} />
-            </div>
-            <span className="text-xl font-bold tracking-tight text-stone-900">Awake Solutions</span>
-          </Link>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white/90 backdrop-blur-xl py-4 shadow-sm border-b border-slate-100' : 'bg-transparent py-6'
+      }`}
+    >
+      <div className="mx-auto max-w-7xl px-6 md:px-12 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-3 z-50 group">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-amber-400 to-orange-500 text-white shadow-lg shadow-orange-500/20 transition-transform group-hover:rotate-12">
+            <Sun size={24} strokeWidth={2.5} />
+          </div>
+          <span className="font-sans text-2xl font-extrabold tracking-tight text-slate-900">
+            Awakesol
+          </span>
+        </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:block">
-            <ul className="flex items-center gap-8 text-sm font-medium text-stone-600">
-              {isHome ? (
-                <>
-                  <li><button onClick={() => handleScroll('home')} className="hover:text-orange-500 transition-colors">Home</button></li>
-                  <li><button onClick={() => handleScroll('categories')} className="hover:text-orange-500 transition-colors">Categories</button></li>
-                  <li><button onClick={() => handleScroll('about')} className="hover:text-orange-500 transition-colors">About</button></li>
-                  <li><button onClick={() => handleScroll('contact')} className="hover:text-orange-500 transition-colors">Contact</button></li>
-                </>
-              ) : (
-                <>
-                  <li><Link to="/#home" className="hover:text-orange-500 transition-colors">Home</Link></li>
-                  <li><Link to="/#categories" className="hover:text-orange-500 transition-colors">Categories</Link></li>
-                  <li><Link to="/#about" className="hover:text-orange-500 transition-colors">About</Link></li>
-                  <li><Link to="/#contact" className="hover:text-orange-500 transition-colors">Contact</Link></li>
-                </>
-              )}
-            </ul>
-          </nav>
-
-          <div className="hidden md:block">
-            {isHome ? (
+        {/* Desktop Nav */}
+        <nav className="hidden md:block">
+          <ul className="flex items-center gap-8 font-sans text-[15px] font-bold text-slate-600">
+            <li><button onClick={() => handleScrollTo('learning')} className="hover:text-teal-600 transition-colors">Self Learning</button></li>
+            <li><button onClick={() => handleScrollTo('health')} className="hover:text-teal-600 transition-colors">Senior Health</button></li>
+            <li><button onClick={() => handleScrollTo('nature')} className="hover:text-teal-600 transition-colors">Nature</button></li>
+            <li><button onClick={() => handleScrollTo('about')} className="hover:text-teal-600 transition-colors">About</button></li>
+            <li>
               <button 
-                onClick={() => handleScroll('categories')}
-                className="inline-flex h-10 items-center justify-center rounded-full bg-stone-900 px-6 text-sm font-medium text-white transition-transform hover:scale-105 active:scale-95"
+                onClick={() => handleScrollTo('newsletter')}
+                className="ml-4 rounded-full bg-teal-600 px-6 py-2.5 text-white transition-all hover:bg-teal-700 hover:shadow-lg hover:shadow-teal-600/20 hover:-translate-y-0.5"
               >
-                Explore Now
+                Join Newsletter
               </button>
-            ) : (
-              <Link 
-                to="/#categories"
-                className="inline-flex h-10 items-center justify-center rounded-full bg-stone-900 px-6 text-sm font-medium text-white transition-transform hover:scale-105 active:scale-95"
-              >
-                Explore Now
-              </Link>
-            )}
-          </div>
+            </li>
+          </ul>
+        </nav>
 
-          {/* Mobile Menu Toggle */}
-          <button 
-            className="md:hidden p-2 text-stone-600"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="md:hidden z-50 p-2 text-slate-800 bg-slate-50 hover:bg-slate-100 rounded-full transition-colors"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Mobile Nav Overlay */}
+        <div className={`fixed inset-0 z-40 bg-white transition-opacity duration-300 md:hidden flex flex-col justify-center items-center ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+          <nav className="flex flex-col items-center gap-8 font-sans text-2xl font-bold text-slate-800">
+            <button onClick={() => handleScrollTo('learning')} className="hover:text-teal-600 transition-colors">Self Learning</button>
+            <button onClick={() => handleScrollTo('health')} className="hover:text-teal-600 transition-colors">Senior Health</button>
+            <button onClick={() => handleScrollTo('nature')} className="hover:text-teal-600 transition-colors">Nature</button>
+            <button onClick={() => handleScrollTo('about')} className="hover:text-teal-600 transition-colors">About</button>
+            <button 
+              onClick={() => handleScrollTo('newsletter')}
+              className="mt-6 rounded-full bg-teal-600 px-10 py-4 text-xl text-white shadow-xl shadow-teal-600/20"
+            >
+              Join Newsletter
+            </button>
+          </nav>
         </div>
-
-        {/* Mobile Nav Dropdown */}
-        {isMobileMenuOpen && (
-          <div className="absolute left-4 right-4 top-24 rounded-3xl bg-white p-6 shadow-xl border border-stone-100 animate-in slide-in-from-top-4 md:hidden">
-            <nav className="flex flex-col gap-4 text-lg font-medium text-stone-800">
-              {isHome ? (
-                <>
-                  <button onClick={() => handleScroll('home')} className="text-left py-2 border-b border-stone-50">Home</button>
-                  <button onClick={() => handleScroll('categories')} className="text-left py-2 border-b border-stone-50">Categories</button>
-                  <button onClick={() => handleScroll('about')} className="text-left py-2 border-b border-stone-50">About</button>
-                  <button onClick={() => handleScroll('contact')} className="text-left py-2 border-b border-stone-50">Contact</button>
-                </>
-              ) : (
-                <>
-                  <Link to="/#home" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-stone-50">Home</Link>
-                  <Link to="/#categories" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-stone-50">Categories</Link>
-                  <Link to="/#about" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-stone-50">About</Link>
-                  <Link to="/#contact" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-stone-50">Contact</Link>
-                </>
-              )}
-              {isHome ? (
-                <button 
-                  onClick={() => handleScroll('categories')}
-                  className="mt-4 flex h-12 items-center justify-center rounded-full bg-orange-500 text-white"
-                >
-                  Explore Now
-                </button>
-              ) : (
-                <Link 
-                  to="/#categories" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="mt-4 flex h-12 items-center justify-center rounded-full bg-orange-500 text-white"
-                >
-                  Explore Now
-                </Link>
-              )}
-            </nav>
-          </div>
-        )}
       </div>
     </header>
   );

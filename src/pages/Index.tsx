@@ -1,395 +1,214 @@
-import { useEffect, useState } from 'react';
-import { ArrowRight, MonitorPlay, Leaf, BookOpen, Sparkles, Mail, User, MessageSquare } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BookOpen, Brain, HeartPulse, Leaf, Sparkles, ArrowRight, Dog, Music, Languages, Activity, Puzzle, Trees, Bird } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import LatestPosts from '../components/LatestPosts';
-
-const categories = [
-  {
-    title: 'Learning Online',
-    slug: 'learning-online',
-    description: 'Master new skills from piano lessons to foreign languages, entirely at your own pace.',
-    icon: MonitorPlay,
-    image: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop',
-    accentColor: 'text-indigo-600',
-    bgColor: 'bg-indigo-50',
-  },
-  {
-    title: 'Home Economy',
-    slug: 'home-economy',
-    description: 'Cultivate your life with guides on gardening, wholesome cooking, and smart cost savings.',
-    icon: Leaf,
-    image: 'https://images.unsplash.com/photo-1466692476877-6dca137b01d1?q=80&w=2070&auto=format&fit=crop',
-    accentColor: 'text-emerald-600',
-    bgColor: 'bg-emerald-50',
-  },
-  {
-    title: 'Books',
-    slug: 'books',
-    description: 'Curated collections, deep dives, and summaries to expand your mind and horizons.',
-    icon: BookOpen,
-    image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2070&auto=format&fit=crop',
-    accentColor: 'text-amber-600',
-    bgColor: 'bg-amber-50',
-  },
-  {
-    title: 'Other',
-    slug: 'other',
-    description: 'More exciting categories and resources are on the horizon. Stay tuned for what is next.',
-    icon: Sparkles,
-    image: 'https://images.unsplash.com/photo-1505322022379-7c3353ee6291?q=80&w=2000&auto=format&fit=crop',
-    accentColor: 'text-rose-600',
-    bgColor: 'bg-rose-50',
-  }
-];
 
 export default function Index() {
-  const location = useLocation();
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
-
   useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    }
-  }, [location]);
-
-  const handleCategoryClick = (slug: string) => {
-    setActiveCategory(slug);
-    const articlesSection = document.getElementById('articles');
-    if (articlesSection) {
-      articlesSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] font-sans selection:bg-orange-200 selection:text-orange-900 flex flex-col">
+    <div className="min-h-screen bg-slate-50 font-sans selection:bg-teal-200 selection:text-teal-900">
       <Navigation />
+      
+      {/* Hero Section */}
+      <section className="relative px-4 pb-20 pt-32 md:px-8 md:pt-40 lg:pb-32 overflow-hidden">
+        {/* Background Gradients */}
+        <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 opacity-30 pointer-events-none">
+          <div className="w-[600px] h-[600px] rounded-full bg-gradient-to-br from-teal-400 to-emerald-200 blur-3xl mix-blend-multiply animate-pulse" style={{ animationDuration: '8s' }}></div>
+        </div>
+        <div className="absolute top-40 left-0 -translate-x-1/3 opacity-20 pointer-events-none">
+          <div className="w-[500px] h-[500px] rounded-full bg-gradient-to-br from-orange-400 to-amber-200 blur-3xl mix-blend-multiply animate-pulse" style={{ animationDuration: '10s' }}></div>
+        </div>
 
-      <main className="flex-grow">
-        <section id="home" className="relative px-4 pb-20 pt-12 md:px-8 md:pt-24 lg:pb-32">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
-              <div className="max-w-2xl">
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-700">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-                  </span>
-                  Welcome to Awakesol.com
-                </div>
-                <h1 className="mb-6 text-5xl font-extrabold tracking-tight text-stone-900 md:text-7xl lg:leading-[1.1]">
-                  Awaken your <span className="text-orange-500">potential</span> today.
-                </h1>
-                <p className="mb-8 text-lg text-stone-600 md:text-xl leading-relaxed">
-                  Discover curated resources across online learning, home economy, and literature. Equip yourself with the knowledge to thrive in everyday life.
-                </p>
-                <div className="flex flex-col gap-4 sm:flex-row">
-                  <a 
-                    href="#categories" 
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.getElementById('categories')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="inline-flex h-14 items-center justify-center rounded-full bg-orange-500 px-8 text-lg font-semibold text-white shadow-lg shadow-orange-500/30 transition-all hover:-translate-y-1 hover:shadow-orange-500/40 active:translate-y-0"
-                  >
-                    Discover Categories
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
-                </div>
+        <div className="mx-auto max-w-7xl relative z-10">
+          <div className="grid gap-16 lg:grid-cols-2 lg:gap-8 items-center">
+            <div className="max-w-2xl">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-teal-700 shadow-sm border border-slate-100">
+                <Sparkles size={16} className="text-amber-500" />
+                Awaken your potential today
               </div>
-              
-              <div className="relative">
-                <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-orange-100 to-amber-50 opacity-50 blur-2xl"></div>
-                <div className="relative aspect-[4/3] md:aspect-square lg:aspect-[4/3] overflow-hidden rounded-[2.5rem] shadow-2xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" 
-                    alt="Students learning and collaborating" 
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                
-                <div className="absolute -bottom-6 -left-6 md:-left-12 rounded-3xl bg-white p-6 shadow-xl border border-stone-100">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
-                      <Leaf size={24} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-stone-500">Featured</p>
-                      <p className="text-lg font-bold text-stone-900">Home Economy</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="categories" className="px-4 py-20 bg-stone-900 md:px-8 lg:py-32 rounded-[3rem] mx-2 md:mx-6 mb-6 scroll-mt-24">
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-16 md:text-center">
-              <h2 className="mb-4 text-4xl font-extrabold text-white md:text-5xl">
-                Explore our Worlds
+              <h1 className="mb-6 text-5xl font-extrabold tracking-tight text-slate-900 md:text-7xl lg:leading-[1.1]">
+                Learn and <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">Thrive</span>.
+              </h1>
+              <h2 className="mb-6 text-2xl font-bold text-slate-700 md:text-3xl">
+                Enjoy Life and Nature.
               </h2>
-              <p className="mx-auto max-w-2xl text-lg text-stone-400">
-                Dive into our carefully structured categories designed to help you learn, save, and grow.
+              <p className="mb-8 text-lg text-slate-600 md:text-xl leading-relaxed font-medium">
+                Discover expert guidance, practical tips, and inspiring content. From mastering new skills to vibrant senior living and exploring the great outdoors.
               </p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-              {categories.map((category, index) => {
-                const Icon = category.icon;
-                return (
-                  <div 
-                    key={index} 
-                    className="group relative overflow-hidden rounded-[2.5rem] bg-stone-800 p-2 transition-all hover:bg-stone-700 cursor-pointer"
-                    onClick={() => handleCategoryClick(category.slug)}
-                  >
-                    <div className="flex flex-col sm:flex-row gap-6 h-full">
-                      <div className="relative h-64 sm:h-auto sm:w-2/5 overflow-hidden rounded-[2rem]">
-                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
-                        <img 
-                          src={category.image} 
-                          alt={category.title} 
-                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      </div>
-                      <div className="flex sm:w-3/5 flex-col justify-center p-6 sm:py-10 sm:pr-10 sm:pl-2">
-                        <div className={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl ${category.bgColor} ${category.accentColor}`}>
-                          <Icon size={28} />
-                        </div>
-                        <h3 className="mb-3 text-2xl font-bold text-white group-hover:text-orange-400 transition-colors">
-                          {category.title}
-                        </h3>
-                        <p className="mb-6 text-stone-400 leading-relaxed text-balance">
-                          {category.description}
-                        </p>
-                        <button className="inline-flex items-center text-sm font-bold text-white group-hover:text-orange-400 transition-colors w-fit mt-auto">
-                          View Articles
-                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section id="articles" className="px-4 py-20 bg-[#FAFAFA] md:px-8 lg:py-32 scroll-mt-24">
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <div>
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-600">
-                  Latest Updates
-                </div>
-                <h2 className="text-4xl font-extrabold text-stone-900 md:text-5xl">
-                  Recent Articles
-                </h2>
-              </div>
-            </div>
-
-            <div className="mb-8 flex overflow-x-auto pb-4 hide-scrollbar gap-3 -mx-4 px-4 md:mx-0 md:px-0">
-              <button 
-                onClick={() => setActiveCategory(null)}
-                className={`whitespace-nowrap px-6 py-3 rounded-full text-sm font-bold transition-colors ${
-                  activeCategory === null 
-                    ? 'bg-stone-900 text-white' 
-                    : 'bg-white text-stone-600 border border-stone-200 hover:border-stone-300 hover:bg-stone-50'
-                }`}
-              >
-                All Articles
-              </button>
-              {categories.map((cat) => (
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <button 
-                  key={cat.slug}
-                  onClick={() => setActiveCategory(cat.slug)}
-                  className={`whitespace-nowrap px-6 py-3 rounded-full text-sm font-bold transition-colors ${
-                    activeCategory === cat.slug 
-                      ? 'bg-stone-900 text-white' 
-                      : 'bg-white text-stone-600 border border-stone-200 hover:border-stone-300 hover:bg-stone-50'
-                  }`}
+                  onClick={() => document.getElementById('learning')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="inline-flex h-14 items-center justify-center rounded-full bg-teal-600 px-8 text-lg font-bold text-white shadow-lg shadow-teal-600/20 transition-all hover:-translate-y-1 hover:bg-teal-700"
                 >
-                  {cat.title}
+                  Start Exploring
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </button>
-              ))}
-            </div>
-
-            <LatestPosts categorySlug={activeCategory} />
-          </div>
-        </section>
-
-        <section id="about" className="px-4 py-20 md:px-8 lg:py-32 scroll-mt-24">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-              <div className="relative order-2 lg:order-1">
-                <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-stone-200 to-orange-100 opacity-50 blur-2xl"></div>
-                <div className="relative overflow-hidden rounded-[2.5rem] shadow-2xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" 
-                    alt="About Awake Solutions" 
-                    className="h-full w-full object-cover aspect-[4/3] md:aspect-[3/2]"
-                  />
-                </div>
-              </div>
-              
-              <div className="order-1 lg:order-2">
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-stone-100 px-4 py-2 text-sm font-semibold text-stone-600">
-                  Our Mission
-                </div>
-                <h2 className="mb-6 text-4xl font-extrabold tracking-tight text-stone-900 md:text-5xl">
-                  About <span className="text-orange-500">Awake Solutions</span>
-                </h2>
-                <p className="mb-6 text-lg text-stone-600 leading-relaxed">
-                  We believe that learning shouldn't stop at the classroom. Awake Solutions was founded on the principle that practical knowledge—whether it's mastering a new language, growing your own food, or making smart financial decisions—is the key to a fulfilling life.
-                </p>
-                <p className="mb-8 text-lg text-stone-600 leading-relaxed">
-                  Our curated platform bridges the gap between ambition and achievement. We bring you carefully crafted guides, courses, and resources that fit seamlessly into your modern lifestyle.
-                </p>
-                <div className="flex gap-8">
-                  <div className="flex flex-col">
-                    <span className="text-4xl font-black text-stone-900">4+</span>
-                    <span className="text-sm font-semibold text-stone-500 uppercase tracking-wider mt-1">Core Categories</span>
-                  </div>
-                  <div className="w-px bg-stone-200"></div>
-                  <div className="flex flex-col">
-                    <span className="text-4xl font-black text-stone-900">100%</span>
-                    <span className="text-sm font-semibold text-stone-500 uppercase tracking-wider mt-1">Commitment</span>
-                  </div>
-                </div>
+                <button 
+                  onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="inline-flex h-14 items-center justify-center rounded-full bg-white px-8 text-lg font-bold text-slate-700 shadow-sm border border-slate-200 transition-all hover:bg-slate-50 hover:text-teal-600"
+                >
+                  About Awakesol
+                </button>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section id="contact" className="px-4 py-20 bg-white md:px-8 lg:py-32 border-t border-stone-100 scroll-mt-24">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-              <div>
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-600">
-                  Contact Us
-                </div>
-                <h2 className="mb-6 text-4xl font-extrabold tracking-tight text-stone-900 md:text-5xl">
-                  Let's get in <span className="text-orange-500">touch</span>
-                </h2>
-                <p className="mb-10 text-lg text-stone-600 leading-relaxed max-w-lg">
-                  Have a question, a suggestion for a new category, or just want to say hi? We'd love to hear from you. Fill out the form and our team will get back to you shortly.
-                </p>
-                
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-50 text-orange-500">
-                      <Mail size={24} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-stone-500 uppercase tracking-wider">Email Us</p>
-                      <a href="mailto:hello@awakesol.com" className="text-lg font-bold text-stone-900 hover:text-orange-500 transition-colors">hello@awakesol.com</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="rounded-[2.5rem] bg-[#FAFAFA] p-6 shadow-sm border border-stone-100 sm:p-10">
-                <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert("Thanks for reaching out! We'll be in touch soon."); }}>
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-bold text-stone-700 ml-1">Full Name</label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none text-stone-400">
-                        <User size={18} />
-                      </div>
-                      <input 
-                        type="text" 
-                        id="name" 
-                        required
-                        className="block w-full rounded-2xl border-0 py-4 pl-14 pr-4 text-stone-900 ring-1 ring-inset ring-stone-200 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 transition-shadow bg-white" 
-                        placeholder="Jane Doe"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-bold text-stone-700 ml-1">Email Address</label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none text-stone-400">
-                        <Mail size={18} />
-                      </div>
-                      <input 
-                        type="email" 
-                        id="email" 
-                        required
-                        className="block w-full rounded-2xl border-0 py-4 pl-14 pr-4 text-stone-900 ring-1 ring-inset ring-stone-200 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 transition-shadow bg-white" 
-                        placeholder="jane@example.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-bold text-stone-700 ml-1">Message</label>
-                    <div className="relative">
-                      <div className="absolute top-4 left-0 flex items-start pl-5 pointer-events-none text-stone-400">
-                        <MessageSquare size={18} />
-                      </div>
-                      <textarea 
-                        id="message" 
-                        rows={4} 
-                        required
-                        className="block w-full rounded-2xl border-0 py-4 pl-14 pr-4 text-stone-900 ring-1 ring-inset ring-stone-200 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 transition-shadow bg-white resize-none" 
-                        placeholder="How can we help you?"
-                      />
-                    </div>
-                  </div>
-                  
-                  <button 
-                    type="submit" 
-                    className="w-full h-14 items-center justify-center rounded-2xl bg-orange-500 px-8 text-lg font-bold text-white shadow-lg shadow-orange-500/30 transition-all hover:-translate-y-1 hover:shadow-orange-500/40 active:translate-y-0"
-                  >
-                    Send Message
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="px-4 py-24 md:px-8 bg-white">
-          <div className="mx-auto max-w-5xl overflow-hidden rounded-[3rem] bg-orange-500 relative">
-            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-orange-400 opacity-50 blur-3xl"></div>
-            <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-orange-600 opacity-50 blur-3xl"></div>
             
-            <div className="relative p-10 md:p-20 text-center">
-              <h2 className="mb-6 text-4xl font-extrabold text-white md:text-5xl">
-                Ready to start your journey?
-              </h2>
-              <p className="mb-10 text-lg text-orange-100 max-w-2xl mx-auto">
-                Join Awake Solutions today and get access to our expanding library of resources, courses, and guides.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <button 
-                  onClick={() => document.getElementById('categories')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="inline-flex h-14 items-center justify-center rounded-full bg-white px-8 text-lg font-bold text-orange-600 transition-transform hover:scale-105"
-                >
-                  Get Started Now
-                </button>
-                <a 
-                  href="https://awakesol.com" 
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex h-14 items-center justify-center rounded-full border-2 border-white/30 px-8 text-lg font-bold text-white transition-colors hover:bg-white/10"
-                >
-                  Visit Awakesol.com
-                </a>
+            <div className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square">
+              <div className="absolute inset-0 bg-gradient-to-tr from-teal-100 to-orange-50 rounded-[3rem] transform rotate-3"></div>
+              <div className="absolute inset-0 bg-white rounded-[3rem] shadow-xl overflow-hidden transform -rotate-3 transition-transform hover:rotate-0 duration-500">
+                <img 
+                  src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013&auto=format&fit=crop" 
+                  alt="Person enjoying nature and learning" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Floating badges */}
+              <div className="absolute top-12 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce" style={{ animationDuration: '3s' }}>
+                <div className="bg-orange-100 p-2 rounded-xl text-orange-600">
+                  <Brain size={24} />
+                </div>
+                <div className="font-bold text-slate-800">Self Learning</div>
+              </div>
+              <div className="absolute bottom-12 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce" style={{ animationDelay: '1s', animationDuration: '4s' }}>
+                <div className="bg-emerald-100 p-2 rounded-xl text-emerald-600">
+                  <Leaf size={24} />
+                </div>
+                <div className="font-bold text-slate-800">Nature & Life</div>
               </div>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      {/* Self Learning Section */}
+      <section id="learning" className="px-4 py-20 md:px-8 lg:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 md:text-center">
+            <h2 className="mb-4 text-4xl font-extrabold text-slate-900 md:text-5xl">
+              Self Learning
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg font-medium text-slate-600">
+              Unlock your potential at any age. Dive into comprehensive guides on AI, language acquisition, musical mastery, and effective dog training.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { title: "Artificial Intelligence", desc: "Demystifying AI for everyday life and productivity.", icon: Brain, color: "bg-blue-500", light: "bg-blue-50", text: "text-blue-600" },
+              { title: "Language Learning", desc: "Proven methods to speak a new language fluently.", icon: Languages, color: "bg-violet-500", light: "bg-violet-50", text: "text-violet-600" },
+              { title: "Music & Instruments", desc: "Start your musical journey, from theory to practice.", icon: Music, color: "bg-pink-500", light: "bg-pink-50", text: "text-pink-600" },
+              { title: "Dog Training", desc: "Build a strong bond with positive reinforcement.", icon: Dog, color: "bg-amber-500", light: "bg-amber-50", text: "text-amber-600" }
+            ].map((topic, i) => (
+              <div key={i} className="group p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className={`w-14 h-14 rounded-2xl ${topic.light} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  <topic.icon size={28} className={topic.text} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{topic.title}</h3>
+                <p className="text-slate-600 font-medium leading-relaxed">{topic.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Senior Health Section */}
+      <section id="health" className="px-4 py-20 bg-teal-900 md:px-8 lg:py-32 rounded-[3rem] mx-2 md:mx-6 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-800 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3"></div>
+        <div className="mx-auto max-w-7xl relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-teal-800/50 px-4 py-2 text-sm font-bold text-teal-100 backdrop-blur-sm border border-teal-700">
+                <HeartPulse size={16} className="text-rose-400" />
+                Vibrant Living
+              </div>
+              <h2 className="mb-6 text-4xl font-extrabold md:text-5xl lg:leading-[1.1]">
+                Senior Health & Wellness
+              </h2>
+              <p className="mb-8 text-lg text-teal-100/80 md:text-xl leading-relaxed font-medium">
+                Aging is a privilege. We provide resources to keep your mind sharp and body active from the comfort of your home.
+              </p>
+              
+              <div className="space-y-6">
+                {[
+                  { title: "Home Exercise Routines", desc: "Safe, effective workouts designed for mobility and strength.", icon: Activity },
+                  { title: "Cognitive Puzzling", desc: "Challenging puzzles and games to enhance brain health.", icon: Puzzle },
+                  { title: "Curated Reading Lists", desc: "Inspiring books that promote lifelong learning and joy.", icon: BookOpen }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="flex-shrink-0 mt-1">
+                      <div className="w-12 h-12 rounded-xl bg-teal-800 flex items-center justify-center text-teal-300">
+                        <item.icon size={24} />
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold mb-1">{item.title}</h4>
+                      <p className="text-teal-100/70">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="relative w-full aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-teal-800/50">
+              <img 
+                src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?q=80&w=2070&auto=format&fit=crop" 
+                alt="Active senior doing yoga" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Nature Section */}
+      <section id="nature" className="px-4 py-20 md:px-8 lg:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center mb-16">
+            <h2 className="mb-4 text-4xl font-extrabold text-slate-900 md:text-5xl">
+              Connect With Nature
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg font-medium text-slate-600">
+              Discover the profound benefits of connecting with the natural world, from cultivating a vibrant garden to observing local wildlife.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="group relative overflow-hidden rounded-[2.5rem] shadow-lg cursor-pointer">
+              <div className="absolute inset-0 bg-slate-900/40 z-10 group-hover:bg-slate-900/30 transition-colors"></div>
+              <img
+                src="https://images.unsplash.com/photo-1592424001807-6c846666ba59?q=80&w=2070&auto=format&fit=crop"
+                alt="Gardening"
+                className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute bottom-0 left-0 p-8 z-20 w-full bg-gradient-to-t from-slate-900/90 to-transparent">
+                <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white mb-4">
+                  <Trees size={24} />
+                </div>
+                <h3 className="text-3xl font-bold text-white mb-2">Gardening</h3>
+                <p className="text-slate-200 font-medium">Cultivate your own sanctuary and grow organic produce.</p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-[2.5rem] shadow-lg cursor-pointer">
+              <div className="absolute inset-0 bg-slate-900/40 z-10 group-hover:bg-slate-900/30 transition-colors"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1452570053594-1b985d6ea890?q=80&w=2070&auto=format&fit=crop" 
+                alt="Wildlife observation" 
+                className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute bottom-0 left-0 p-8 z-20 w-full bg-gradient-to-t from-slate-900/90 to-transparent">
+                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white mb-4">
+                  <Bird size={24} />
+                </div>
+                <h3 className="text-3xl font-bold text-white mb-2">Wildlife Observation</h3>
+                <p className="text-slate-200 font-medium">Learn to identify, attract, and protect local wildlife.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
