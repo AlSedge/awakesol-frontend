@@ -2,11 +2,34 @@ import { useEffect } from 'react';
 import { BookOpen, Brain, HeartPulse, Leaf, Sparkles, ArrowRight, Dog, Music, Languages, Activity, Puzzle, Trees, Bird } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Index() {
+  const location = useLocation();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    // Check if there's a hash in the URL (e.g. from the navigation menu)
+    if (location.hash) {
+      // Remove the '#' to get the id
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      
+      if (element) {
+        // Small delay to ensure the page has rendered before scrolling
+        setTimeout(() => {
+          const offset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-teal-200 selection:text-teal-900">
@@ -46,12 +69,12 @@ export default function Index() {
                   Start Exploring
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </button>
-                <button 
-                  onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+                <Link
+                  to="/about"
                   className="inline-flex h-14 items-center justify-center rounded-full bg-white px-8 text-lg font-bold text-slate-700 shadow-sm border border-slate-200 transition-all hover:bg-slate-50 hover:text-teal-600"
                 >
                   About Awakesol
-                </button>
+                </Link>
               </div>
             </div>
             
@@ -69,7 +92,7 @@ export default function Index() {
                 <div className="bg-orange-100 p-2 rounded-xl text-orange-600">
                   <Brain size={24} />
                 </div>
-                <div className="font-bold text-slate-800">Self Learning</div>
+                <div className="font-bold text-slate-800">Self Improvement</div>
               </div>
               <div className="absolute bottom-12 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce" style={{ animationDelay: '1s', animationDuration: '4s' }}>
                 <div className="bg-emerald-100 p-2 rounded-xl text-emerald-600">
@@ -87,7 +110,7 @@ export default function Index() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 md:text-center">
             <h2 className="mb-4 text-4xl font-extrabold text-slate-900 md:text-5xl">
-              Self Learning
+              Self Improvement
             </h2>
             <p className="mx-auto max-w-2xl text-lg font-medium text-slate-600">
               Unlock your potential at any age. Dive into comprehensive guides on AI, language acquisition, musical mastery, and effective dog training.
@@ -96,18 +119,18 @@ export default function Index() {
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { title: "Artificial Intelligence", desc: "Demystifying AI for everyday life and productivity.", icon: Brain, color: "bg-blue-500", light: "bg-blue-50", text: "text-blue-600" },
-              { title: "Language Learning", desc: "Proven methods to speak a new language fluently.", icon: Languages, color: "bg-violet-500", light: "bg-violet-50", text: "text-violet-600" },
-              { title: "Music & Instruments", desc: "Start your musical journey, from theory to practice.", icon: Music, color: "bg-pink-500", light: "bg-pink-50", text: "text-pink-600" },
-              { title: "Dog Training", desc: "Build a strong bond with positive reinforcement.", icon: Dog, color: "bg-amber-500", light: "bg-amber-50", text: "text-amber-600" }
+              { title: "Learn a Language", desc: "Proven methods to speak a new language fluently.", icon: Languages, color: "bg-violet-500", light: "bg-violet-50", text: "text-violet-600", link: "/learning/languages" },
+              { title: "Learn an Instrument", desc: "Start your musical journey, from theory to practice.", icon: Music, color: "bg-pink-500", light: "bg-pink-50", text: "text-pink-600", link: "/learning/music" },
+              { title: "Pet Training", desc: "Build a strong bond with positive reinforcement.", icon: Dog, color: "bg-amber-500", light: "bg-amber-50", text: "text-amber-600", link: "/learning/dogs" },
+              { title: "Artificial Intelligence", desc: "Demystifying AI for everyday life and productivity.", icon: Brain, color: "bg-blue-500", light: "bg-blue-50", text: "text-blue-600", link: "/learning/ai" }
             ].map((topic, i) => (
-              <div key={i} className="group p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <Link to={topic.link} key={i} className="group p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 block">
                 <div className={`w-14 h-14 rounded-2xl ${topic.light} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                   <topic.icon size={28} className={topic.text} />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">{topic.title}</h3>
                 <p className="text-slate-600 font-medium leading-relaxed">{topic.desc}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -132,21 +155,21 @@ export default function Index() {
               
               <div className="space-y-6">
                 {[
-                  { title: "Home Exercise Routines", desc: "Safe, effective workouts designed for mobility and strength.", icon: Activity },
-                  { title: "Cognitive Puzzling", desc: "Challenging puzzles and games to enhance brain health.", icon: Puzzle },
-                  { title: "Curated Reading Lists", desc: "Inspiring books that promote lifelong learning and joy.", icon: BookOpen }
+                  { title: "Living Well Tips", desc: "Daily habits, nutrition, and wellness advice for a vibrant life.", icon: Activity, link: "/health/living-well" },
+                  { title: "Brain Health", desc: "Challenging puzzles, games, and programs to enhance cognitive function.", icon: Puzzle, link: "/health/brain-health" },
+                  { title: "Recommended Books", desc: "Inspiring books that promote lifelong learning and joy.", icon: BookOpen, link: "/health/books" }
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-4">
+                  <Link to={item.link} key={i} className="flex gap-4 group hover:bg-teal-800/30 p-4 -ml-4 rounded-2xl transition-colors">
                     <div className="flex-shrink-0 mt-1">
-                      <div className="w-12 h-12 rounded-xl bg-teal-800 flex items-center justify-center text-teal-300">
+                      <div className="w-12 h-12 rounded-xl bg-teal-800 flex items-center justify-center text-teal-300 group-hover:scale-110 transition-transform">
                         <item.icon size={24} />
                       </div>
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold mb-1">{item.title}</h4>
+                      <h4 className="text-xl font-bold mb-1 group-hover:text-white transition-colors">{item.title}</h4>
                       <p className="text-teal-100/70">{item.desc}</p>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -175,21 +198,21 @@ export default function Index() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="group relative overflow-hidden rounded-[2.5rem] shadow-lg cursor-pointer">
+            <Link to="/nature/gardening" className="group relative overflow-hidden rounded-[2.5rem] shadow-lg cursor-pointer block">
               <div className="absolute inset-0 bg-slate-900/40 z-10 group-hover:bg-slate-900/30 transition-colors"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1592424001807-6c846666ba59?q=80&w=2070&auto=format&fit=crop" 
-                alt="Gardening" 
+              <img
+                src="https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg"
+                alt="Gardening"
                 className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 p-8 z-20 w-full bg-gradient-to-t from-slate-900/90 to-transparent">
-                <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white mb-4">
+                <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
                   <Trees size={24} />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-2">Gardening</h3>
                 <p className="text-slate-200 font-medium">Cultivate your own sanctuary and grow organic produce.</p>
               </div>
-            </div>
+            </Link>
 
             <div className="group relative overflow-hidden rounded-[2.5rem] shadow-lg cursor-pointer">
               <div className="absolute inset-0 bg-slate-900/40 z-10 group-hover:bg-slate-900/30 transition-colors"></div>

@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Sun } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === '/';
 
   useEffect(() => {
@@ -18,7 +19,14 @@ export default function Navigation() {
 
   const handleScrollTo = (id: string) => {
     setIsMobileMenuOpen(false);
-    if (!isHome) return;
+    
+    // If we are not on the homepage, navigate to homepage first, then scroll
+    if (!isHome) {
+      navigate(`/#${id}`);
+      // The actual scrolling will be handled by a useEffect in the Index component
+      return;
+    }
+
     const element = document.getElementById(id);
     if (element) {
       const offset = 80;
@@ -39,27 +47,22 @@ export default function Navigation() {
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3 z-50 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-amber-400 to-orange-500 text-white shadow-lg shadow-orange-500/20 transition-transform group-hover:rotate-12">
-            <Sun size={24} strokeWidth={2.5} />
-          </div>
-          <span className="font-sans text-2xl font-extrabold tracking-tight text-slate-900">
-            Awakesol
-          </span>
+          <img src="/logo.svg" alt="Awake Solutions Logo" className="h-[42px] w-auto group-hover:scale-105 transition-transform origin-left" />
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:block">
           <ul className="flex items-center gap-8 font-sans text-[15px] font-bold text-slate-600">
-            <li><button onClick={() => handleScrollTo('learning')} className="hover:text-teal-600 transition-colors">Self Learning</button></li>
+            <li><button onClick={() => handleScrollTo('learning')} className="hover:text-teal-600 transition-colors">Self Improvement</button></li>
             <li><button onClick={() => handleScrollTo('health')} className="hover:text-teal-600 transition-colors">Senior Health</button></li>
             <li><button onClick={() => handleScrollTo('nature')} className="hover:text-teal-600 transition-colors">Nature</button></li>
-            <li><button onClick={() => handleScrollTo('about')} className="hover:text-teal-600 transition-colors">About</button></li>
+            <li><Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-teal-600 transition-colors">About</Link></li>
             <li>
-              <button 
-                onClick={() => handleScrollTo('newsletter')}
+              <button
+                onClick={() => handleScrollTo('contact')}
                 className="ml-4 rounded-full bg-teal-600 px-6 py-2.5 text-white transition-all hover:bg-teal-700 hover:shadow-lg hover:shadow-teal-600/20 hover:-translate-y-0.5"
               >
-                Join Newsletter
+                Contact Us
               </button>
             </li>
           </ul>
@@ -76,15 +79,15 @@ export default function Navigation() {
         {/* Mobile Nav Overlay */}
         <div className={`fixed inset-0 z-40 bg-white transition-opacity duration-300 md:hidden flex flex-col justify-center items-center ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
           <nav className="flex flex-col items-center gap-8 font-sans text-2xl font-bold text-slate-800">
-            <button onClick={() => handleScrollTo('learning')} className="hover:text-teal-600 transition-colors">Self Learning</button>
+            <button onClick={() => handleScrollTo('learning')} className="hover:text-teal-600 transition-colors">Self Improvement</button>
             <button onClick={() => handleScrollTo('health')} className="hover:text-teal-600 transition-colors">Senior Health</button>
             <button onClick={() => handleScrollTo('nature')} className="hover:text-teal-600 transition-colors">Nature</button>
-            <button onClick={() => handleScrollTo('about')} className="hover:text-teal-600 transition-colors">About</button>
-            <button 
-              onClick={() => handleScrollTo('newsletter')}
+            <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-teal-600 transition-colors">About</Link>
+            <button
+              onClick={() => handleScrollTo('contact')}
               className="mt-6 rounded-full bg-teal-600 px-10 py-4 text-xl text-white shadow-xl shadow-teal-600/20"
             >
-              Join Newsletter
+              Contact Us
             </button>
           </nav>
         </div>
