@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sun } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navigation() {
