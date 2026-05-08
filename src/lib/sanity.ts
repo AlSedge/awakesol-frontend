@@ -1,79 +1,95 @@
 import { createClient } from '@sanity/client';
 
 export const sanityClient = createClient({
-  projectId: 'hb5scemv',
+  projectId: 'hb5scemv', // Awakesol project ID
   dataset: 'production',
-  useCdn: true, // `false` if you want to ensure fresh data
-  apiVersion: '2023-05-03', // use a UTC date string
+  useCdn: false, // Must be false for real-time updates
+  apiVersion: '2024-04-22',
+  perspective: 'published',
 });
 
-export interface SanityPost {
+export interface SanityBook {
   _id: string;
   title: string;
-  slug: { current: string };
-  publishedAt: string;
-  excerpt: string;
-  mainImage?: {
-    asset: {
-      url: string;
-    };
-  };
-  categorySlug?: string;
-  body: any[]; 
+  description: string;
+  coverUrl?: string;
+  backgroundColor: string;
+  textColor: string;
+  order: number;
 }
 
-// Fetch all posts, optionally filtered by category
-export async function fetchSanityPosts(categorySlug?: string | null): Promise<SanityPost[]> {
-  let query = '';
-  
-  if (categorySlug) {
-    query = `*[_type == "post" && $categorySlug in categories[]->slug.current] | order(publishedAt desc)[0...6] {
-      _id,
-      title,
-      slug,
-      publishedAt,
-      excerpt,
-      mainImage {
-        asset->{
-          url
-        }
-      },
-      "categorySlug": categories[0]->slug.current
-    }`;
-    return sanityClient.fetch(query, { categorySlug });
-  } else {
-    query = `*[_type == "post"] | order(publishedAt desc)[0...6] {
-      _id,
-      title,
-      slug,
-      publishedAt,
-      excerpt,
-      mainImage {
-        asset->{
-          url
-        }
-      },
-      "categorySlug": categories[0]->slug.current
-    }`;
-    return sanityClient.fetch(query);
-  }
+export interface SanityArticle {
+  _id: string;
+  title: string;
+  category: string;
+  readTime?: string;
+  description: string;
+  body?: any;
+  link?: string;
+  buttonText?: string;
+  imageUrl?: string;
+  order: number;
 }
 
-export async function fetchSanityPostBySlug(slug: string): Promise<SanityPost | null> {
-  const query = `*[_type == "post" && slug.current == $slug][0] {
-    _id,
-    title,
-    slug,
-    publishedAt,
-    excerpt,
-    mainImage {
-      asset->{
-        url
-      }
-    },
-    body
+export async function fetchBookArticles(): Promise<SanityArticle[]> {
+  const query = `*[_type == "bookArticle"] | order(order asc) {
+    _id, title, category, readTime, description, link, "imageUrl": image.asset->url, order
   }`;
-  
-  const post = await sanityClient.fetch(query, { slug });
-  return post || null;
+  return sanityClient.fetch(query);
+}
+
+export async function fetchBrainResources(): Promise<SanityArticle[]> {
+  const query = `*[_type == "brainResource"] | order(order asc) {
+    _id, title, category, description, link, "imageUrl": image.asset->url, "buttonText": buttonText, order
+  }`;
+  return sanityClient.fetch(query);
+}
+
+export async function fetchLivingWellArticles(): Promise<SanityArticle[]> {
+  const query = `*[_type == "livingWellArticle"] | order(order asc) {
+    _id, title, category, description, body, link, order
+  }`;
+  return sanityClient.fetch(query);
+}
+
+export async function fetchGardeningArticles(): Promise<SanityArticle[]> {
+  const query = `*[_type == "gardeningArticle"] | order(order asc) {
+    _id, title, category, description, body, link, "imageUrl": image.asset->url, order
+  }`;
+  return sanityClient.fetch(query);
+}
+
+export async function fetchDogResources(): Promise<SanityArticle[]> {
+  const query = `*[_type == "dogResource"] | order(order asc) {
+    _id, title, category, description, link, "imageUrl": image.asset->url, "buttonText": buttonText, order
+  }`;
+  return sanityClient.fetch(query);
+}
+
+export async function fetchMusicResources(): Promise<SanityArticle[]> {
+  const query = `*[_type == "musicResource"] | order(order asc) {
+    _id, title, category, description, link, "imageUrl": image.asset->url, "buttonText": buttonText, order
+  }`;
+  return sanityClient.fetch(query);
+}
+
+export async function fetchAiArticles(): Promise<SanityArticle[]> {
+  const query = `*[_type == "aiArticle"] | order(order asc) {
+    _id, title, category, description, body, link, "imageUrl": image.asset->url, order
+  }`;
+  return sanityClient.fetch(query);
+}
+
+export async function fetchAboutPage(): Promise<any> {
+  const query = `*[_type == "aboutPage"][0] {
+    title, description, body, "imageUrl": image.asset->url
+  }`;
+  return sanityClient.fetch(query);
+}
+
+export async function fetchLanguageResources(): Promise<SanityArticle[]> {
+  const query = `*[_type == "languageResource"] | order(order asc) {
+    _id, title, category, description, link, "imageUrl": image.asset->url, "buttonText": buttonText, order
+  }`;
+  return sanityClient.fetch(query);
 }
