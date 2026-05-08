@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Brain } from 'lucide-react';
+import { ArrowLeft, Brain } from 'lucide-react';
 import { sanityClient, type SanityArticle } from '../lib/sanity';
 import { PortableText } from '@portabletext/react';
 
