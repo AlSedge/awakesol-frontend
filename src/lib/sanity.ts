@@ -1,9 +1,9 @@
 import { createClient } from '@sanity/client';
 
 export const sanityClient = createClient({
-  projectId: 'hb5scemv', // Awakesol project ID
+  projectId: 'hb5scemv',
   dataset: 'production',
-  useCdn: false, // Must be false for real-time updates
+  useCdn: false,
   apiVersion: '2024-04-22',
   perspective: 'published',
 });
@@ -91,5 +91,11 @@ export async function fetchLanguageResources(): Promise<SanityArticle[]> {
   const query = `*[_type == "languageResource"] | order(order asc) {
     _id, title, category, description, link, "imageUrl": image.asset->url, "buttonText": buttonText, order
   }`;
-  return sanityClient.fetch(query);
+  
+  // This tells Vercel: "DO NOT CACHE THIS! Always get fresh data!"
+  const clientWithNoCache = sanityClient.withConfig({
+    requestTagPrefix: Date.now().toString(),
+  });
+
+  return clientWithNoCache.fetch(query);
 }

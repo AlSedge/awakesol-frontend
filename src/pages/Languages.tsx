@@ -98,24 +98,42 @@ export default function Languages() {
         ) : (
           <div className="grid md:grid-cols-2 gap-8">
             {resources.map((resource) => (
-              <div key={resource._id} className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300">
-                <div className="w-16 h-16 rounded-2xl bg-sky-50 flex items-center justify-center text-sky-500 mb-6">
-                  {resource.category?.toLowerCase().includes('speak') ? <MessageCircle size={32} /> : 
-                   resource.category?.toLowerCase().includes('listen') ? <Ear size={32} /> : 
-                   <BookOpen size={32} />}
+              <div key={resource._id} className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+                
+                {/* Image Section */}
+                {resource.imageUrl ? (
+                  <div className="h-56 w-full bg-slate-100 overflow-hidden relative">
+                    <img 
+                      src={resource.imageUrl} 
+                      alt={resource.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="h-56 w-full bg-sky-50 flex items-center justify-center">
+                    {resource.category?.toLowerCase().includes('speak') ? <MessageCircle size={48} className="text-sky-200" /> : 
+                     resource.category?.toLowerCase().includes('listen') ? <Ear size={48} className="text-sky-200" /> : 
+                     <BookOpen size={48} className="text-sky-200" />}
+                  </div>
+                )}
+
+                {/* Content Section */}
+                <div className="p-8 flex flex-col flex-grow">
+                  <div className="text-sm font-bold text-sky-500 mb-2 uppercase tracking-wider">{resource.category}</div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">{resource.title}</h3>
+                  <p className="text-slate-600 mb-8 font-medium leading-relaxed flex-grow">{resource.description}</p>
+                  
+                  <a 
+                    href={resource.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-bold hover:bg-sky-500 transition-colors group mt-auto"
+                  >
+                    {resource.buttonText || "Start Learning"}
+                    <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </a>
                 </div>
-                <div className="text-sm font-bold text-sky-500 mb-2 uppercase tracking-wider">{resource.category}</div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">{resource.title}</h3>
-                <p className="text-slate-600 mb-8 font-medium leading-relaxed">{resource.description}</p>
-                <a 
-                  href={resource.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-bold hover:bg-sky-500 transition-colors group"
-                >
-                  {resource.buttonText || "Start Learning"}
-                  <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </a>
+
               </div>
             ))}
           </div>
