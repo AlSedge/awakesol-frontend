@@ -44,7 +44,11 @@ export async function fetchBookArticles(): Promise<SanityArticle[]> {
     order
   }`;
   
-  return sanityClient.fetch(query);
+  const clientWithNoCache = sanityClient.withConfig({
+    requestTagPrefix: Date.now().toString(),
+  });
+
+  return clientWithNoCache.fetch(query);
 }
 
 // Fetch all brain health affiliate resources from Sanity
@@ -71,7 +75,7 @@ export async function fetchBrainResources(): Promise<SanityArticle[]> {
 // Fetch all living well tips from Sanity
 export async function fetchLivingWellArticles(): Promise<SanityArticle[]> {
   const query = `*[_type == "livingWellArticle"] | order(order asc) {
-    _id, title, category, description, body, link, "imageUrl": image.asset->url, order
+    _id, title, category, description, body, link, "imageUrl": headerImage.asset->url, order
   }`;
   
   const clientWithNoCache = sanityClient.withConfig({
@@ -84,6 +88,26 @@ export async function fetchLivingWellArticles(): Promise<SanityArticle[]> {
 // Fetch all gardening articles from Sanity
 export async function fetchGardeningArticles(): Promise<SanityArticle[]> {
   const query = `*[_type == "gardeningArticle"] | order(order asc) {
+    _id,
+    title,
+    category,
+    description,
+    body,
+    link,
+    "imageUrl": image.asset->url,
+    order
+  }`;
+  
+  const clientWithNoCache = sanityClient.withConfig({
+    requestTagPrefix: Date.now().toString(),
+  });
+
+  return clientWithNoCache.fetch(query);
+}
+
+// Fetch all wildlife articles from Sanity
+export async function fetchWildlifeArticles(): Promise<SanityArticle[]> {
+  const query = `*[_type == "wildlifeArticle"] | order(order asc) {
     _id,
     title,
     category,

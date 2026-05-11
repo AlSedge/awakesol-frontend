@@ -16,7 +16,10 @@ export default function ArticleView() {
         _id, title, category, description, body
       }`;
       
-      sanityClient.fetch<SanityArticle>(query, { id })
+      const clientWithNoCache = sanityClient.withConfig({
+        requestTagPrefix: Date.now().toString(),
+      });
+      clientWithNoCache.fetch<SanityArticle>(query, { id })
         .then(data => setArticle(data))
         .catch(err => console.error("Error fetching living well article:", err))
         .finally(() => setLoading(false));

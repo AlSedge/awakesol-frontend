@@ -157,7 +157,7 @@ export default function Index() {
                 {[
                   { title: "Living Well Tips", desc: "Daily habits, nutrition, and wellness advice for a vibrant life.", icon: Activity, link: "/health/living-well" },
                   { title: "Brain Health", desc: "Challenging puzzles, games, and programs to enhance cognitive function.", icon: Puzzle, link: "/health/brain-health" },
-                  { title: "Recommended Books", desc: "Inspiring books that promote lifelong learning and joy.", icon: BookOpen, link: "/health/books" }
+                  { title: "Senior Health Books", desc: "Inspiring books that promote lifelong learning and joy.", icon: BookOpen, link: "/health/books" }
                 ].map((item, i) => (
                   <Link to={item.link} key={i} className="flex gap-4 group hover:bg-teal-800/30 p-4 -ml-4 rounded-2xl transition-colors">
                     <div className="flex-shrink-0 mt-1">
@@ -214,21 +214,21 @@ export default function Index() {
               </div>
             </Link>
 
-            <div className="group relative overflow-hidden rounded-[2.5rem] shadow-lg cursor-pointer">
+            <Link to="/nature/wildlife" className="group relative overflow-hidden rounded-[2.5rem] shadow-lg cursor-pointer block">
               <div className="absolute inset-0 bg-slate-900/40 z-10 group-hover:bg-slate-900/30 transition-colors"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1452570053594-1b985d6ea890?q=80&w=2070&auto=format&fit=crop" 
-                alt="Wildlife observation" 
+              <img
+                src="https://images.unsplash.com/photo-1452570053594-1b985d6ea890?q=80&w=2070&auto=format&fit=crop"
+                alt="Wildlife"
                 className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 p-8 z-20 w-full bg-gradient-to-t from-slate-900/90 to-transparent">
-                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white mb-4">
+                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
                   <Bird size={24} />
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-2">Wildlife Observation</h3>
+                <h3 className="text-3xl font-bold text-white mb-2">Wildlife</h3>
                 <p className="text-slate-200 font-medium">Learn to identify, attract, and protect local wildlife.</p>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>

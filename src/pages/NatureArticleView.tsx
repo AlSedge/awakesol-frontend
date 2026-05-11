@@ -1,107 +1,113 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Trees } from 'lucide-react';
+import { useParams, Link, useLocation } from 'react-router-dom';
+import { ArrowLeft, Loader2 } from 'lucide-react';
 import { sanityClient, type SanityArticle } from '../lib/sanity';
+import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
 import { PortableText } from '@portabletext/react';
 
 export default function NatureArticleView() {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams();
+  const location = useLocation();
   const [article, setArticle] = useState<SanityArticle | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Determine back link and theme based on current URL path
+  const isWildlife = location.pathname.includes('/nature/wildlife');
+  const backLink = isWildlife ? "/nature/wildlife" : "/nature/gardening";
+  const backText = isWildlife ? "Back to Wildlife" : "Back to Gardening";
+  const themeColor = isWildlife ? "orange" : "emerald";
 
   useEffect(() => {
-    if (id) {
-      setLoading(true);
-      const query = `*[_type == "gardeningArticle" && _id == $id][0] {
-        _id, title, category, description, body, "imageUrl": image.asset->url
-      }`;
-      
-      sanityClient.fetch<SanityArticle>(query, { id })
-        .then(data => setArticle(data))
-        .catch(err => console.error("Error fetching gardening article:", err))
-        .finally(() => setLoading(false));
-    }
+    window.scrollTo(0, 0);
+
+    const getArticle = async () => {
+      if (!id) return;
+      try {
+        const query = `*[_type in ["gardeningArticle", "wildlifeArticle"] && _id == $id][0] {
+          _id,
+          title,
+          category,
+          body,
+          "imageUrl": image.asset->url
+        }`;
+        
+        const clientWithNoCache = sanityClient.withConfig({
+          requestTagPrefix: Date.now().toString(),
+        });
+        const data = await clientWithNoCache.fetch<SanityArticle>(query, { id });
+        setArticle(data);
+      } catch (error) {
+        console.error("Error fetching article:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getArticle();
   }, [id]);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500"></div>
+        <Loader2 className={`h-12 w-12 animate-spin text-${themeColor}-600`} />
       </div>
     );
   }
 
   if (!article) {
     return (
-      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
-        <h2 className="text-2xl font-bold text-slate-800 mb-4">Article not found</h2>
-        <Link to="/nature/gardening" className="text-emerald-600 hover:underline">Return to Gardening Guides</Link>
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 text-center">
+        <h1 className="text-4xl font-extrabold text-slate-900 mb-4">Article Not Found</h1>
+        <p className="text-slate-600 mb-8">This article may have been removed or the link is invalid.</p>
+        <Link to={backLink} className={`text-${themeColor}-600 font-bold hover:text-${themeColor}-700 flex items-center`}>
+          <ArrowLeft size={16} className="mr-2" /> {backText}
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans pb-20">
-      <header className="bg-white border-b border-slate-200 py-6 px-4 md:px-8 sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <Link to="/nature/gardening" className="flex items-center gap-2 text-slate-600 hover:text-emerald-600 font-bold transition-colors">
-            <ArrowLeft size={20} />
-            Back to Gardening
+    <div className={`min-h-screen bg-slate-50 font-sans selection:bg-${themeColor}-200 selection:text-${themeColor}-900`}>
+      <Navigation />
+      
+      <main className="pt-32 pb-20 md:pt-40">
+        <article className="mx-auto max-w-3xl px-4 md:px-8">
+          <Link to={backLink} className={`inline-flex items-center text-sm font-bold text-slate-500 hover:text-${themeColor}-600 mb-12 transition-colors`}>
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            {backText}
           </Link>
-          <Trees className="text-emerald-500" size={24} />
-        </div>
-      </header>
 
-      <main className="max-w-3xl mx-auto px-4 pt-12 md:px-8">
-        <div className="mb-8">
-          <div className="flex items-center gap-4 mb-6">
-            <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider">
+          <header className="mb-12">
+            <div className={`inline-flex items-center rounded-full bg-${themeColor}-50 px-4 py-2 text-sm font-bold text-${themeColor}-700 mb-6`}>
               {article.category}
-            </span>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
-            {article.title}
-          </h1>
-          <p className="text-xl text-slate-600 font-medium leading-relaxed mb-8">
-            {article.description}
-          </p>
-        </div>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              {article.title}
+            </h1>
+          </header>
 
-        {article.imageUrl && (
-          <div className="w-full aspect-video rounded-3xl overflow-hidden mb-12 shadow-lg">
-            <img 
-              src={article.imageUrl} 
-              alt={article.title} 
-              className="w-full h-full object-cover"
-            />
-          </div>
-        )}
-
-        <article className="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-a:text-emerald-600 hover:prose-a:text-emerald-500 prose-img:rounded-2xl">
-          {article.body ? (
-            <PortableText 
-              value={article.body} 
-              components={{
-                types: {
-                  image: ({ value }) => {
-                    if (!value?.asset?._ref) return null;
-                    return (
-                      <img 
-                        alt="Article illustration" 
-                        loading="lazy" 
-                        src={`https://cdn.sanity.io/images/hb5scemv/production/${value.asset._ref.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png').replace('-webp', '.webp')}`}
-                        className="rounded-2xl shadow-md w-full"
-                      />
-                    )
-                  }
-                }
-              }}
-            />
-          ) : (
-            <p>Content is being updated...</p>
+          {article.imageUrl && (
+            <div className="w-full aspect-video md:aspect-[21/9] rounded-[2rem] overflow-hidden shadow-lg mb-12">
+              <img
+                src={article.imageUrl}
+                alt={article.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
           )}
+
+          <div className={`prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-a:text-${themeColor}-600 prose-img:rounded-3xl hover:prose-a:text-${themeColor}-700`}>
+            {article.body ? (
+              <PortableText value={article.body} />
+            ) : (
+              <p className="italic text-slate-500">No content provided for this article.</p>
+            )}
+          </div>
         </article>
       </main>
+
+      <Footer />
     </div>
   );
 }

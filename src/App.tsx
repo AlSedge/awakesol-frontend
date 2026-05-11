@@ -1,7 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-// Pages
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AI from "./pages/AI";
@@ -12,6 +10,7 @@ import DogTraining from "./pages/DogTraining";
 import Books from "./pages/Books";
 import LivingWell from "./pages/LivingWell";
 import Gardening from "./pages/Gardening";
+import Wildlife from "./pages/Wildlife";
 import BrainHealth from "./pages/BrainHealth";
 import ArticleView from "./pages/ArticleView";
 import NatureArticleView from "./pages/NatureArticleView";
@@ -37,6 +36,8 @@ const App = () => (
         <Route path="/health/brain-health" element={<BrainHealth />} />
         <Route path="/nature/gardening" element={<Gardening />} />
         <Route path="/nature/gardening/:id" element={<NatureArticleView />} />
+        <Route path="/nature/wildlife" element={<Wildlife />} />
+        <Route path="/nature/wildlife/:id" element={<NatureArticleView />} />
         <Route path="/about" element={<About />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/cookie-policy-eu" element={<CookiePolicy />} />
