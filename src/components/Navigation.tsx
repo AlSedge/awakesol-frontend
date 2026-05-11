@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navigation() {
@@ -47,7 +47,9 @@ export default function Navigation() {
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3 z-50 group">
-          <img src="/logo.svg" alt="Awake Solutions Logo" className="h-[42px] w-auto group-hover:scale-105 transition-transform origin-left" />
+          <span className="text-2xl font-black tracking-tight text-slate-900 group-hover:text-teal-600 transition-colors">
+            Awake <span className="text-teal-500">Sol</span>
+          </span>
         </Link>
 
         {/* Desktop Nav */}
