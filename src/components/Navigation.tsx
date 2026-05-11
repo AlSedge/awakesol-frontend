@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sun } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navigation() {
@@ -20,10 +20,8 @@ export default function Navigation() {
   const handleScrollTo = (id: string) => {
     setIsMobileMenuOpen(false);
     
-    // If we are not on the homepage, navigate to homepage first, then scroll
     if (!isHome) {
       navigate(`/#${id}`);
-      // The actual scrolling will be handled by a useEffect in the Index component
       return;
     }
 
