@@ -96,7 +96,7 @@ export default function LivingWell() {
             <div className="flex-1 w-full relative">
               <div className="absolute inset-0 bg-gradient-to-bl from-rose-200 to-orange-100 rounded-[3rem] transform -rotate-3"></div>
               <img 
-                src="https://images.unsplash.com/photo-1505500858162-817a3f360541?q=80&w=2000&auto=format&fit=crop" 
+                src="https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                 alt="Active lifestyle" 
                 className="relative rounded-[3rem] shadow-xl w-full aspect-[4/3] object-cover transform rotate-3 transition-transform hover:rotate-0 duration-500"
               />
