@@ -71,7 +71,7 @@ export async function fetchBrainResources(): Promise<SanityArticle[]> {
 // Fetch all living well tips from Sanity
 export async function fetchLivingWellArticles(): Promise<SanityArticle[]> {
   const query = `*[_type == "livingWellArticle"] | order(order asc) {
-    _id, title, category, description, body, link, "imageUrl": headerImage.asset->url, order
+    _id, title, category, description, body, link, "imageUrl": image.asset->url, order
   }`;
   
   const clientWithNoCache = sanityClient.withConfig({
