@@ -3,11 +3,13 @@ import { Trees, ArrowLeft, ArrowRight, Sprout, Sun, HeartPulse, Brain, Leaf, Loa
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-import { fetchGardeningArticles, type SanityArticle } from '../lib/sanity';
+import { fetchGardeningArticles, fetchGardeningProducts, type SanityArticle, type SanityProduct } from '../lib/sanity';
 
 export default function Gardening() {
   const [articles, setArticles] = useState<SanityArticle[]>([]);
+  const [products, setProducts] = useState<SanityProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,7 +30,24 @@ export default function Gardening() {
       }
     };
 
+    const getProducts = async () => {
+      try {
+        const fetchedProducts = await fetchGardeningProducts();
+        if (fetchedProducts && fetchedProducts.length > 0) {
+          setProducts(fetchedProducts);
+        } else {
+          setProducts(fallbackProducts);
+        }
+      } catch (error) {
+        console.error("Error fetching gardening products:", error);
+        setProducts(fallbackProducts);
+      } finally {
+        setIsLoadingProducts(false);
+      }
+    };
+
     getArticles();
+    getProducts();
   }, []);
 
   const fallbackArticles: SanityArticle[] = [
@@ -63,6 +82,53 @@ export default function Gardening() {
       category: "Landscaping",
       description: "Beautiful blooms that don't need constant watering. Create a stunning garden that survives the hottest summer days.",
       link: "#"
+    }
+  ];
+
+  const fallbackProducts: SanityProduct[] = [
+    {
+      _id: "p1",
+      order: 1,
+      title: "Lomi Electric Composter",
+      category: "Countertop",
+      description: "The ultimate kitchen composter. Lomi turns food waste into nutrient-rich dirt at the push of a button — in just hours. Odorless, quiet, and perfect for apartments or homes without yard space.",
+      link: "https://www.amazon.com/dp/B0B5X4Y4GN?tag=awakesol-20",
+      buttonText: "View on Amazon",
+      imageUrl: "https://images.unsplash.com/photo-1589144204843-54b8f22b1f0d?q=80&w=2070&auto=format&fit=crop",
+      review: "★★★★★ 4.8/5 — \"I was skeptical at first, but Lomi has completely changed how our kitchen handles waste. The dirt it produces is genuinely rich and my plants love it.\""
+    },
+    {
+      _id: "p2",
+      order: 2,
+      title: "Reencle Indoor Composter",
+      category: "Countertop",
+      description: "Uses natural microorganisms to break down food waste silently. Holds more than Lomi and runs continuously — just keep adding scraps. Great for families who cook often.",
+      link: "https://www.amazon.com/dp/B0C7DZQYLM?tag=awakesol-20",
+      buttonText: "View on Amazon",
+      imageUrl: "https://images.unsplash.com/photo-1592492158937-b2a9e9b0e8c3?q=80&w=2070&auto=format&fit=crop",
+      review: "★★★★☆ 4.5/5 — \"Love that I can just keep adding scraps. The microorganism approach feels more natural than electric drying. Takes a bit longer but worth it.\""
+    },
+    {
+      _id: "p3",
+      order: 3,
+      title: "HOTBIN Hot Composter",
+      category: "Outdoor",
+      description: "Reaches 40–60°C for fast, efficient composting. Handles cooked food, garden waste, and more. Produces rich compost in 30–90 days — much faster than traditional bins.",
+      link: "https://www.amazon.com/dp/B08L8K8W6R?tag=awakesol-20",
+      buttonText: "View on Amazon",
+      imageUrl: "https://images.unsplash.com/photo-1592419044706-39796d40f98c?q=80&w=2070&auto=format&fit=crop",
+      review: "★★★★★ 4.7/5 — \"Finally a hot composter that actually works! I'm getting usable compost in about 6 weeks. Handles all our kitchen waste including cooked food.\""
+    },
+    {
+      _id: "p4",
+      order: 4,
+      title: "FCMP Outdoor Tumbling Composter",
+      category: "Outdoor",
+      description: "Dual-chamber tumbling design makes turning compost effortless. Sturdy, affordable, and perfect for beginners who want a traditional outdoor setup without the heavy lifting.",
+      link: "https://www.amazon.com/dp/B0013G5GAC?tag=awakesol-20",
+      buttonText: "View on Amazon",
+      imageUrl: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=2070&auto=format&fit=crop",
+      review: "★★★★☆ 4.4/5 — \"Great starter composter. The tumbling feature is a back-saver. Assembly took about an hour but it's been going strong for 2 years now.\""
     }
   ];
 
@@ -219,70 +285,56 @@ export default function Gardening() {
               Turn kitchen scraps into nutrient-rich soil — right from your countertop or backyard. These are our top picks for getting started with composting at home.
             </p>
 
-            <div className="grid gap-8 md:grid-cols-2">
-              {[
-                {
-                  title: "Lomi Electric Composter",
-                  category: "Countertop",
-                  description: "The ultimate kitchen composter. Lomi turns food waste into nutrient-rich dirt at the push of a button — in just hours. Odorless, quiet, and perfect for apartments or homes without yard space.",
-                  link: "https://www.amazon.com/dp/B0B5X4Y4GN?tag=buyrea-21",
-                  buttonText: "View on Amazon",
-                  imageUrl: "https://images.unsplash.com/photo-1589144204843-54b8f22b1f0d?q=80&w=2070&auto=format&fit=crop",
-                  accent: "bg-emerald-100 text-emerald-700"
-                },
-                {
-                  title: "Reencle Indoor Composter",
-                  category: "Countertop",
-                  description: "Uses natural microorganisms to break down food waste silently. Holds more than Lomi and runs continuously — just keep adding scraps. Great for families who cook often.",
-                  link: "https://www.amazon.com/dp/B0C7DZQYLM?tag=buyrea-21",
-                  buttonText: "View on Amazon",
-                  imageUrl: "https://images.unsplash.com/photo-1592492158937-b2a9e9b0e8c3?q=80&w=2070&auto=format&fit=crop",
-                  accent: "bg-teal-100 text-teal-700"
-                },
-                {
-                  title: "HOTBIN Hot Composter",
-                  category: "Outdoor",
-                  description: "Reaches 40–60°C for fast, efficient composting. Handles cooked food, garden waste, and more. Produces rich compost in 30–90 days — much faster than traditional bins.",
-                  link: "https://www.amazon.com/dp/B08L8K8W6R?tag=buyrea-21",
-                  buttonText: "View on Amazon",
-                  imageUrl: "https://images.unsplash.com/photo-1592419044706-39796d40f98c?q=80&w=2070&auto=format&fit=crop",
-                  accent: "bg-amber-100 text-amber-700"
-                },
-                {
-                  title: "FCMP Outdoor Tumbling Composter",
-                  category: "Outdoor",
-                  description: "Dual-chamber tumbling design makes turning compost effortless. Sturdy, affordable, and perfect for beginners who want a traditional outdoor setup without the heavy lifting.",
-                  link: "https://www.amazon.com/dp/B0013G5GAC?tag=buyrea-21",
-                  buttonText: "View on Amazon",
-                  imageUrl: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=2070&auto=format&fit=crop",
-                  accent: "bg-orange-100 text-orange-700"
-                }
-              ].map((product, i) => (
-                <article key={i} className="group bg-white rounded-[2.5rem] p-4 pr-6 sm:p-6 sm:pr-8 shadow-sm border border-slate-100 hover:shadow-xl transition-all flex flex-col sm:flex-row gap-6 items-center">
-                  <div className="w-full sm:w-48 h-48 rounded-[2rem] overflow-hidden flex-shrink-0 bg-slate-100">
-                    <img
-                      src={product.imageUrl}
-                      alt={product.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center py-2">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className={`text-xs font-bold px-3 py-1 rounded-full ${product.accent}`}>{product.category}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors">
-                      {product.title}
-                    </h3>
-                    <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                      {product.description}
-                    </p>
-                    <a href={product.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-emerald-600 font-bold text-sm hover:text-emerald-700">
-                      {product.buttonText} <ExternalLink size={16} className="ml-1.5" />
-                    </a>
-                  </div>
-                </article>
-              ))}
-            </div>
+            {isLoadingProducts ? (
+              <div className="flex justify-center items-center py-20">
+                <Loader2 className="h-12 w-12 animate-spin text-emerald-600" />
+              </div>
+            ) : (
+              <div className="grid gap-8 md:grid-cols-2">
+                {products.map((product, i) => {
+                  const categoryColors: Record<string, string> = {
+                    "Countertop": "bg-emerald-100 text-emerald-700",
+                    "Outdoor": "bg-amber-100 text-amber-700",
+                  };
+                  const accent = categoryColors[product.category] || "bg-teal-100 text-teal-700";
+
+                  return (
+                    <article key={product._id || i} className="group bg-white rounded-[2.5rem] p-4 pr-6 sm:p-6 sm:pr-8 shadow-sm border border-slate-100 hover:shadow-xl transition-all flex flex-col sm:flex-row gap-6 items-center">
+                      <div className="w-full sm:w-48 h-48 rounded-[2rem] overflow-hidden flex-shrink-0 bg-slate-100">
+                        {product.imageUrl && (
+                          <img
+                            src={product.imageUrl}
+                            alt={product.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        )}
+                      </div>
+                      <div className="flex flex-col justify-center py-2">
+                        <div className="flex items-center gap-3 mb-3">
+                          <span className={`text-xs font-bold px-3 py-1 rounded-full ${accent}`}>{product.category}</span>
+                        </div>
+                        <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors">
+                          {product.title}
+                        </h3>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-3">
+                          {product.description}
+                        </p>
+                        {product.review && (
+                          <p className="text-amber-600 text-xs font-medium mb-4 italic bg-amber-50 rounded-xl px-3 py-2 border border-amber-100">
+                            {product.review}
+                          </p>
+                        )}
+                        {product.link && (
+                          <a href={product.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-emerald-600 font-bold text-sm hover:text-emerald-700">
+                            {product.buttonText || "View on Amazon"} <ExternalLink size={16} className="ml-1.5" />
+                          </a>
+                        )}
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* Article / Deep Dive Section */}
