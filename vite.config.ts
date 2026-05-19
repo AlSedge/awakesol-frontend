@@ -8,4 +8,13 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    proxy: {
+      "/api/sanity": {
+        target: "https://hb5scemv.api.sanity.io",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/sanity/, ""),
+      },
+    },
+  },
 })
