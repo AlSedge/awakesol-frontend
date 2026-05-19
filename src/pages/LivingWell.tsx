@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Activity, ArrowLeft, ArrowRight, Sun, Apple, Heart, Leaf, Loader2, ExternalLink } from 'lucide-react';
+import { Activity, ArrowLeft, ArrowRight, Sun, Apple, Heart, Leaf, Loader2, } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
