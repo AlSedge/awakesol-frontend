@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Activity, ArrowLeft, ArrowRight, Sun, Apple, Heart, Leaf, Loader2 } from 'lucide-react';
+import { Activity, ArrowLeft, ArrowRight, Sun, Apple, Heart, Leaf, Loader2, ExternalLink } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
@@ -38,7 +38,8 @@ export default function LivingWell() {
       title: "5 Gentle Morning Stretches for Better Mobility",
       category: "Physical Health",
       description: "Start your day right. These low-impact stretches can be done right from your bed or a sturdy chair to improve blood flow and reduce morning stiffness.",
-      link: "#"
+      link: "#",
+      imageUrl: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2070&auto=format&fit=crop"
     },
     {
       _id: "2",
@@ -46,11 +47,11 @@ export default function LivingWell() {
       title: "Nutrition Tips for Sustained Energy",
       category: "Diet & Nutrition",
       description: "How to adjust your diet as you age to maintain steady energy levels throughout the day without relying on caffeine or sugar.",
-      link: "#"
+      link: "#",
+      imageUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop"
     }
   ];
 
-  // Helper function to map Sanity categories to specific colors and icons
   const getCategoryStyle = (category: string) => {
     const cat = category.toLowerCase();
     if (cat.includes('physical') || cat.includes('exercise') || cat.includes('mobility')) {
@@ -95,9 +96,9 @@ export default function LivingWell() {
             </div>
             <div className="flex-1 w-full relative">
               <div className="absolute inset-0 bg-gradient-to-bl from-rose-200 to-orange-100 rounded-[3rem] transform -rotate-3"></div>
-              <img 
+              <img
                 src="https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="Active lifestyle" 
+                alt="Active lifestyle"
                 className="relative rounded-[3rem] shadow-xl w-full aspect-[4/3] object-cover transform rotate-3 transition-transform hover:rotate-0 duration-500"
               />
             </div>
@@ -105,7 +106,7 @@ export default function LivingWell() {
 
           {/* Articles Grid */}
           <div className="mb-20">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-10">Latest Wellness Articles</h2>
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-10">Wellness Tips</h2>
             
             {isLoading ? (
               <div className="flex justify-center items-center py-20">
@@ -134,14 +135,12 @@ export default function LivingWell() {
                         {article.description}
                       </p>
 
-                      {/* Display Image if uploaded */}
                       {article.imageUrl && (
                         <div className="w-full aspect-video rounded-2xl overflow-hidden mb-6 shadow-sm border border-slate-100 relative">
                           <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         </div>
                       )}
                       
-                      {/* Check if it's an external link or an internal article view */}
                       {article.link ? (
                         <a href={article.link} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center font-bold text-sm ${style.text} mt-auto`}>
                           Read Full Article <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />

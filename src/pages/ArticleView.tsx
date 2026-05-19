@@ -13,7 +13,8 @@ export default function ArticleView() {
     if (id) {
       setLoading(true);
       const query = `*[_type == "livingWellArticle" && _id == $id][0] {
-        _id, title, category, description, body
+        _id, title, category, description, body,
+        "imageUrl": headerImage.asset->url
       }`;
       
       const clientWithNoCache = sanityClient.withConfig({
@@ -56,6 +57,17 @@ export default function ArticleView() {
       </header>
 
       <main className="max-w-3xl mx-auto px-4 pt-12 md:px-8">
+        {/* Image Header */}
+        {article.imageUrl && (
+          <div className="w-full aspect-video md:aspect-[21/9] rounded-2xl overflow-hidden shadow-lg mb-10">
+            <img 
+              src={article.imageUrl} 
+              alt={article.title} 
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
+
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-6">
             <span className="bg-rose-100 text-rose-700 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider">
