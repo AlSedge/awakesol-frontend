@@ -16,13 +16,16 @@ import ArticleView from "./pages/ArticleView";
 import NatureArticleView from "./pages/NatureArticleView";
 import Privacy from "./pages/Privacy";
 import CookiePolicy from "./pages/CookiePolicy";
+import Disclosure from "./pages/Disclosure";
 import About from "./pages/About";
+import Seo from "./components/Seo";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
+      <Seo />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/learning/ai" element={<AI />} />
@@ -41,6 +44,7 @@ const App = () => (
         <Route path="/about" element={<About />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/cookie-policy-eu" element={<CookiePolicy />} />
+        <Route path="/disclosure" element={<Disclosure />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

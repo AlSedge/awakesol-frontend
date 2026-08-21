@@ -5,6 +5,7 @@ import { sanityClient, type SanityArticle } from '../lib/sanity';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { PortableText } from '@portabletext/react';
+import { applyArticleSeo } from '../lib/seo';
 
 export default function NatureArticleView() {
   const { id } = useParams();
@@ -37,6 +38,9 @@ export default function NatureArticleView() {
         });
         const data = await clientWithNoCache.fetch<SanityArticle>(query, { id });
         setArticle(data);
+        if (data) {
+          applyArticleSeo(data.title, data.category || '', window.location.pathname);
+        }
       } catch (error) {
         console.error("Error fetching article:", error);
       } finally {

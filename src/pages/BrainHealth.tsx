@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowLeft, ExternalLink, Puzzle, Brain, Lightbulb } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { fetchBrainResources, type SanityArticle } from '../lib/sanity';
+import AffiliateNote from '../components/AffiliateNote';
 
 export default function BrainHealth() {
   const [resources, setResources] = useState<SanityArticle[]>([]);
@@ -41,6 +42,7 @@ export default function BrainHealth() {
           <p className="text-lg text-slate-600 max-w-2xl font-medium leading-relaxed">
             Discover engaging games, challenging puzzles, and scientifically-backed programs designed to enhance cognitive function and memory.
           </p>
+          <AffiliateNote />
         </div>
 
         {loading ? (
@@ -75,15 +77,21 @@ export default function BrainHealth() {
                   <h3 className="text-2xl font-bold text-slate-900 mb-4">{resource.title}</h3>
                   <p className="text-slate-600 mb-8 font-medium leading-relaxed flex-grow">{resource.description}</p>
                   
-                  <a 
-                    href={resource.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-bold hover:bg-violet-600 transition-colors group mt-auto"
-                  >
-                    {resource.buttonText || "Try It Now"}
-                    <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </a>
+                  {resource.link && resource.link !== "#" ? (
+                    <a 
+                      href={resource.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-bold hover:bg-violet-600 transition-colors group mt-auto"
+                    >
+                      {resource.buttonText || "Try It Now"}
+                      <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center justify-center w-full bg-slate-200 text-slate-500 px-6 py-4 rounded-xl font-bold mt-auto">
+                      Available Soon
+                    </span>
+                  )}
                 </div>
 
               </div>

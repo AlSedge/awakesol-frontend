@@ -9,7 +9,7 @@ export const sanityClient = createClient({
   apiVersion: '2024-04-22',
   perspective: 'published',
   ...(isDev && {
-    apiHost: `localhost:${window.location.port}/api/sanity`,
+    apiHost: `http://localhost:${window.location.port}/api/sanity`,
     useProjectHostname: false,
   }),
 });

@@ -201,8 +201,8 @@ export default function Index() {
             <Link to="/nature/gardening" className="group relative overflow-hidden rounded-[2.5rem] shadow-lg cursor-pointer block">
               <div className="absolute inset-0 bg-slate-900/40 z-10 group-hover:bg-slate-900/30 transition-colors"></div>
               <img
-                src="https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg"
-                alt="Gardening"
+                src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=2070&auto=format&fit=crop"
+                alt="Vegetable garden with fresh produce"
                 className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 p-8 z-20 w-full bg-gradient-to-t from-slate-900/90 to-transparent">

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowLeft, ExternalLink, Languages as LanguagesIcon, MessageCircle, Ear, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { fetchLanguageResources, SanityArticle } from '../lib/sanity';
+import AffiliateNote from '../components/AffiliateNote';
 
 export default function Languages() {
   const [resources, setResources] = useState<SanityArticle[]>([]);
@@ -29,7 +30,7 @@ export default function Languages() {
       title: "Rosetta Stone Unlimited",
       category: "Complete System",
       description: "The gold standard for language learning. Get lifetime access to 25 languages with their award-winning immersive method.",
-      link: "#",
+      link: "https://www.amazon.com/Rosetta-Stone-Lifetime-Languages-Activation/dp/B0BQ7BNZFG?tag=awakesol-20",
       buttonText: "Start Learning",
       imageUrl: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=800&auto=format&fit=crop",
       order: 1
@@ -39,7 +40,7 @@ export default function Languages() {
       title: "Pimsleur Audio Lessons",
       category: "Speaking & Listening",
       description: "Learn to speak conversationally in just 30 days. Perfect for learning while driving or walking your dog.",
-      link: "#",
+      link: "https://www.amazon.com/s?k=pimsleur+language+audio+cd&tag=awakesol-20",
       buttonText: "Try for Free",
       imageUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop",
       order: 2
@@ -49,7 +50,7 @@ export default function Languages() {
       title: "Babbel Subscription",
       category: "Quick Lessons",
       description: "Bite-sized, 10-minute lessons designed by language experts to get you speaking quickly and confidently.",
-      link: "#",
+      link: "https://www.babbel.com/",
       buttonText: "View Offers",
       imageUrl: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=800&auto=format&fit=crop",
       order: 3
@@ -59,7 +60,7 @@ export default function Languages() {
       title: "italki Tutoring",
       category: "Live Practice",
       description: "Connect with native speakers for 1-on-1 personalized language lessons at affordable rates.",
-      link: "#",
+      link: "https://www.italki.com/",
       buttonText: "Find a Tutor",
       imageUrl: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=800&auto=format&fit=crop",
       order: 4
@@ -89,6 +90,7 @@ export default function Languages() {
           <p className="text-lg text-slate-600 max-w-2xl font-medium leading-relaxed">
             Learning a new language improves cognitive function, builds new neural pathways, and opens doors to new cultures and experiences.
           </p>
+          <AffiliateNote />
         </div>
 
         {loading ? (
@@ -123,15 +125,21 @@ export default function Languages() {
                   <h3 className="text-2xl font-bold text-slate-900 mb-4">{resource.title}</h3>
                   <p className="text-slate-600 mb-8 font-medium leading-relaxed flex-grow">{resource.description}</p>
                   
-                  <a 
-                    href={resource.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-bold hover:bg-sky-500 transition-colors group mt-auto"
-                  >
-                    {resource.buttonText || "Start Learning"}
-                    <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </a>
+                  {resource.link && resource.link !== "#" ? (
+                    <a 
+                      href={resource.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-bold hover:bg-sky-500 transition-colors group mt-auto"
+                    >
+                      {resource.buttonText || "Start Learning"}
+                      <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center justify-center w-full bg-slate-200 text-slate-500 px-6 py-4 rounded-xl font-bold mt-auto">
+                      Available Soon
+                    </span>
+                  )}
                 </div>
 
               </div>

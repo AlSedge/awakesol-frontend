@@ -4,12 +4,14 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { fetchGardeningArticles, fetchGardeningProducts, type SanityArticle, type SanityProduct } from '../lib/sanity';
+import AffiliateNote from '../components/AffiliateNote';
 
 export default function Gardening() {
   const [articles, setArticles] = useState<SanityArticle[]>([]);
   const [products, setProducts] = useState<SanityProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
+  const [usingFallbackArticles, setUsingFallbackArticles] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,10 +23,12 @@ export default function Gardening() {
           setArticles(fetchedData);
         } else {
           setArticles(fallbackArticles);
+          setUsingFallbackArticles(true);
         }
       } catch (error) {
         console.error("Error fetching gardening articles:", error);
         setArticles(fallbackArticles);
+        setUsingFallbackArticles(true);
       } finally {
         setIsLoading(false);
       }
@@ -176,8 +180,8 @@ export default function Gardening() {
               <div className="absolute inset-0 bg-gradient-to-tr from-emerald-100 to-teal-50 rounded-[3rem] transform rotate-3"></div>
               <div className="absolute inset-0 bg-white rounded-[3rem] shadow-xl overflow-hidden transform -rotate-3 transition-transform hover:rotate-0 duration-500">
                 <img
-                  src="https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg"
-                  alt="Gardening hands"
+                  src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=2070&auto=format&fit=crop"
+                  alt="Hands planting seedlings in a garden"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -263,10 +267,14 @@ export default function Gardening() {
                         <a href={article.link} className={`inline-flex items-center font-bold text-sm ${style.text}`}>
                           Read Article <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
                         </a>
-                      ) : (
+                      ) : !usingFallbackArticles ? (
                         <Link to={`/nature/gardening/${article._id}`} className={`inline-flex items-center font-bold text-sm ${style.text}`}>
                           Read Article <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
                         </Link>
+                      ) : (
+                        <span className="inline-flex items-center font-bold text-sm text-slate-400">
+                          Full guide coming soon
+                        </span>
                       )}
                     </div>
                   );
@@ -284,6 +292,7 @@ export default function Gardening() {
             <p className="text-slate-600 font-medium mb-10 max-w-2xl">
               Turn kitchen scraps into nutrient-rich soil — right from your countertop or backyard. These are our top picks for getting started with composting at home.
             </p>
+            <AffiliateNote />
 
             {isLoadingProducts ? (
               <div className="flex justify-center items-center py-20">
@@ -369,9 +378,14 @@ export default function Gardening() {
             <div className="mt-12 p-8 bg-emerald-50 rounded-3xl border border-emerald-100">
               <h4 className="text-xl font-bold text-slate-900 mb-2">Ready to dig in?</h4>
               <p className="text-slate-600 mb-6">Check out our recommended starter kits and essential tool checklist.</p>
-              <button className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full transition-colors">
-                View Beginner Resources
-              </button>
+              <a
+                href="https://www.amazon.com/s?k=gardening+starter+kit+raised+bed+tools&tag=awakesol-20"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full transition-colors"
+              >
+                View Beginner Resources <ExternalLink size={16} />
+              </a>
             </div>
           </article>
 

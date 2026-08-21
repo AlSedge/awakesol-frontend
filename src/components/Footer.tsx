@@ -69,11 +69,17 @@ export default function Footer() {
           </div>
         </div>
         
+        <p className="text-slate-500 text-sm font-medium mb-6 max-w-3xl">
+          Awakesol is reader-supported. Some links on this site are affiliate links — if you buy
+          through them, we may earn a commission at no extra cost to you.{' '}
+          <Link to="/disclosure" className="underline hover:text-slate-300">Affiliate Disclosure</Link>
+        </p>
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 font-medium text-slate-500 text-sm">
           <p>© {new Date().getFullYear()} Awakesol. All rights reserved.</p>
           <div className="flex gap-8">
             <Link to="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
             <Link to="/cookie-policy-eu" className="hover:text-slate-300 transition-colors">Cookie Policy</Link>
+            <Link to="/disclosure" className="hover:text-slate-300 transition-colors">Affiliate Disclosure</Link>
           </div>
         </div>
       </div>

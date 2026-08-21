@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Brain } from 'lucide-react';
 import { sanityClient, type SanityArticle } from '../lib/sanity';
 import { PortableText } from '@portabletext/react';
+import { applyArticleSeo } from '../lib/seo';
 
 export default function AiArticleView() {
   const { id } = useParams<{ id: string }>();
@@ -17,7 +18,12 @@ export default function AiArticleView() {
       }`;
       
       sanityClient.fetch<SanityArticle>(query, { id })
-        .then(data => setArticle(data))
+        .then(data => {
+          setArticle(data);
+          if (data) {
+            applyArticleSeo(data.title, data.description || '', window.location.pathname);
+          }
+        })
         .catch(err => console.error("Error fetching AI article:", err))
         .finally(() => setLoading(false));
     }

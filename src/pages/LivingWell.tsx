@@ -141,7 +141,7 @@ export default function LivingWell() {
                         </div>
                       )}
                       
-                      {article.link ? (
+                      {article.link && article.link !== "#" ? (
                         <a href={article.link} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center font-bold text-sm ${style.text} mt-auto`}>
                           Read Full Article <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
                         </a>
@@ -166,9 +166,12 @@ export default function LivingWell() {
               <p className="text-rose-100 text-lg mb-8 leading-relaxed">
                 We're always looking for community members to share their own wellness journeys and habits that have helped them thrive.
               </p>
-              <button className="bg-white text-rose-900 hover:bg-rose-50 font-bold py-4 px-8 rounded-full transition-colors text-lg shadow-xl shadow-rose-900/50">
+              <a
+                href="mailto:hello@awakesol.com?subject=Wellness%20Story%20Submission"
+                className="bg-white text-rose-900 hover:bg-rose-50 font-bold py-4 px-8 rounded-full transition-colors text-lg shadow-xl shadow-rose-900/50"
+              >
                 Submit Your Story
-              </button>
+              </a>
             </div>
           </div>
         </div>

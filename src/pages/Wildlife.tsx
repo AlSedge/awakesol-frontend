@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Bird, ArrowLeft, ArrowRight, Trees, Sun, Leaf, Binoculars, Loader2 } from 'lucide-react';
+import { Bird, ArrowLeft, ArrowRight, Trees, Sun, Leaf, Binoculars, Loader2, ExternalLink } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { fetchWildlifeArticles, type SanityArticle } from '../lib/sanity';
+import AffiliateNote from '../components/AffiliateNote';
 
 export default function Wildlife() {
   const [articles, setArticles] = useState<SanityArticle[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [usingFallbackArticles, setUsingFallbackArticles] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,10 +21,12 @@ export default function Wildlife() {
           setArticles(fetchedData);
         } else {
           setArticles(fallbackArticles);
+          setUsingFallbackArticles(true);
         }
       } catch (error) {
         console.error("Error fetching wildlife articles:", error);
         setArticles(fallbackArticles);
+        setUsingFallbackArticles(true);
       } finally {
         setIsLoading(false);
       }
@@ -176,10 +180,14 @@ export default function Wildlife() {
                         <a href={article.link} className={`inline-flex items-center font-bold text-sm ${style.text}`}>
                           Read Article <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
                         </a>
-                      ) : (
+                      ) : !usingFallbackArticles ? (
                         <Link to={`/nature/wildlife/${article._id}`} className={`inline-flex items-center font-bold text-sm ${style.text}`}>
                           Read Article <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
                         </Link>
+                      ) : (
+                        <span className="inline-flex items-center font-bold text-sm text-slate-400">
+                          Full guide coming soon
+                        </span>
                       )}
                     </div>
                   );
@@ -218,11 +226,17 @@ export default function Wildlife() {
             </div>
             
             <div className="mt-12 p-8 bg-orange-50 rounded-3xl border border-orange-100">
+              <AffiliateNote />
               <h4 className="text-xl font-bold text-slate-900 mb-2">Ready to start birding?</h4>
               <p className="text-slate-600 mb-6">Check out our recommended binoculars and field guides for beginners.</p>
-              <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-full transition-colors">
-                View Beginner Resources
-              </button>
+              <a
+                href="https://www.amazon.com/s?k=bird+watching+binoculars+field+guide+beginner+kit&tag=awakesol-20"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-full transition-colors"
+              >
+                View Beginner Resources <ExternalLink size={16} />
+              </a>
             </div>
           </article>
 

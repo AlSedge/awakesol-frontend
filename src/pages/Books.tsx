@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowLeft, BookOpen, ExternalLink, Library } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { fetchBookArticles, type SanityArticle } from '../lib/sanity';
+import AffiliateNote from '../components/AffiliateNote';
 
 export default function Books() {
   const [articles, setArticles] = useState<SanityArticle[]>([]);
@@ -48,6 +49,7 @@ export default function Books() {
           <p className="text-lg text-slate-600 max-w-2xl font-medium leading-relaxed">
             Curated book recommendations focusing on longevity, cognitive health, personal growth, and finding joy in everyday moments.
           </p>
+          <AffiliateNote />
         </div>
 
         {loading ? (
@@ -77,15 +79,21 @@ export default function Books() {
                 
                 <p className="text-slate-600 mb-8 font-medium leading-relaxed flex-grow">{article.description}</p>
                 
-                <a 
-                  href={article.link || "#"} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full bg-indigo-50 text-indigo-700 px-6 py-4 rounded-xl font-bold hover:bg-indigo-600 hover:text-white transition-colors group mt-auto"
-                >
-                  View Book Details
-                  <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </a>
+                {article.link ? (
+                  <a 
+                    href={article.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full bg-indigo-50 text-indigo-700 px-6 py-4 rounded-xl font-bold hover:bg-indigo-600 hover:text-white transition-colors group mt-auto"
+                  >
+                    View Book Details
+                    <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center justify-center w-full bg-slate-200 text-slate-500 px-6 py-4 rounded-xl font-bold mt-auto">
+                    Available Soon
+                  </span>
+                )}
               </div>
             ))}
           </div>

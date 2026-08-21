@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowLeft, ExternalLink, Music as MusicIcon, Guitar, Headphones } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { fetchMusicResources, SanityArticle } from '../lib/sanity';
+import AffiliateNote from '../components/AffiliateNote';
 
 export default function Music() {
   const [resources, setResources] = useState<SanityArticle[]>([]);
@@ -44,6 +45,7 @@ export default function Music() {
           <p className="text-lg text-slate-600 max-w-2xl font-medium leading-relaxed">
             Discover the joy of creating music. Whether you want to strum a guitar around a campfire or master the piano, it's never too late to start your musical journey.
           </p>
+          <AffiliateNote />
         </div>
 
         {loading ? (
@@ -78,15 +80,21 @@ export default function Music() {
                   <h3 className="text-2xl font-bold text-slate-900 mb-4">{resource.title}</h3>
                   <p className="text-slate-600 mb-8 font-medium leading-relaxed flex-grow">{resource.description}</p>
                   
-                  <a 
-                    href={resource.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-bold hover:bg-pink-600 transition-colors group mt-auto"
-                  >
-                    {resource.buttonText || "Start Learning"}
-                    <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </a>
+                  {resource.link && resource.link !== "#" ? (
+                    <a 
+                      href={resource.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-bold hover:bg-pink-600 transition-colors group mt-auto"
+                    >
+                      {resource.buttonText || "Start Learning"}
+                      <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center justify-center w-full bg-slate-200 text-slate-500 px-6 py-4 rounded-xl font-bold mt-auto">
+                      Available Soon
+                    </span>
+                  )}
                 </div>
 
               </div>

@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Activity } from 'lucide-react';
 import { sanityClient, type SanityArticle } from '../lib/sanity';
 import { PortableText } from '@portabletext/react';
+import { applyArticleSeo } from '../lib/seo';
 
 export default function ArticleView() {
   const { id } = useParams<{ id: string }>();
@@ -21,7 +22,12 @@ export default function ArticleView() {
         requestTagPrefix: Date.now().toString(),
       });
       clientWithNoCache.fetch<SanityArticle>(query, { id })
-        .then(data => setArticle(data))
+        .then(data => {
+          setArticle(data);
+          if (data) {
+            applyArticleSeo(data.title, data.description || '', window.location.pathname);
+          }
+        })
         .catch(err => console.error("Error fetching living well article:", err))
         .finally(() => setLoading(false));
     }
