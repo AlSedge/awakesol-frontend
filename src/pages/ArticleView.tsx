@@ -88,7 +88,7 @@ export default function ArticleView() {
           </p>
         </div>
 
-        <article className="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-a:text-rose-600 hover:prose-a:text-rose-500">
+        <article className="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-a:text-blue-700 prose-a:font-bold hover:prose-a:text-blue-500">
           {article.body ? (
             <PortableText 
               value={article.body} 
