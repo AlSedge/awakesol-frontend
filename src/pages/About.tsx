@@ -46,7 +46,7 @@ export default function About() {
             {/* Decorative background blur */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-teal-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50 pointer-events-none"></div>
             
-            <div className="relative z-10 prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-teal-600 hover:prose-a:text-teal-500 prose-p:text-slate-600 prose-p:leading-relaxed">
+            <div className="relative z-10 prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-h2:mt-14 prose-h2:mb-4 prose-a:text-teal-600 hover:prose-a:text-teal-500 prose-p:text-slate-600 prose-p:leading-relaxed">
               
               {loading ? (
                 <div className="flex justify-center py-12">
