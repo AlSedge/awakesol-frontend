@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound";
 import AI from "./pages/AI";
 import AiArticleView from "./pages/AiArticleView";
 import Languages from "./pages/Languages";
+import LanguageArticleView from "./pages/LanguageArticleView";
 import Music from "./pages/Music";
 import DogTraining from "./pages/DogTraining";
 import Books from "./pages/Books";
@@ -31,6 +32,7 @@ const App = () => (
         <Route path="/learning/ai" element={<AI />} />
         <Route path="/learning/ai/:id" element={<AiArticleView />} />
         <Route path="/learning/languages" element={<Languages />} />
+        <Route path="/learning/languages/:id" element={<LanguageArticleView />} />
         <Route path="/learning/music" element={<Music />} />
         <Route path="/learning/dogs" element={<DogTraining />} />
         <Route path="/health/books" element={<Books />} />

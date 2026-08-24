@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, ExternalLink, Languages as LanguagesIcon, MessageCircle, Ear, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { fetchLanguageResources, SanityArticle } from '../lib/sanity';
+import { fetchLanguageResources, fetchLanguageArticles, SanityArticle } from '../lib/sanity';
 import AffiliateNote from '../components/AffiliateNote';
 
 export default function Languages() {
   const [resources, setResources] = useState<SanityArticle[]>([]);
+  const [articles, setArticles] = useState<SanityArticle[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,6 +23,14 @@ export default function Languages() {
         setResources(fallbackResources);
       })
       .finally(() => setLoading(false));
+
+    fetchLanguageArticles()
+      .then(data => {
+        if (data && data.length > 0) {
+          setArticles(data);
+        }
+      })
+      .catch(err => console.error("Error fetching language articles:", err));
   }, []);
 
   const fallbackResources: SanityArticle[] = [
@@ -92,6 +101,45 @@ export default function Languages() {
           </p>
           <AffiliateNote />
         </div>
+
+        {/* Language Guides (articles) */}
+        {articles.length > 0 && (
+          <div className="mb-16">
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-8 tracking-tight">Language Guides</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {articles.map((article) => (
+                <Link
+                  to={`/learning/languages/${article._id}`}
+                  key={article._id}
+                  className="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+                >
+                  {article.imageUrl ? (
+                    <div className="h-48 overflow-hidden bg-slate-100">
+                      <img
+                        src={article.imageUrl}
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : (
+                    <div className="h-48 bg-sky-50 flex items-center justify-center">
+                      <LanguagesIcon size={48} className="text-sky-200" />
+                    </div>
+                  )}
+                  <div className="p-8 flex-grow flex flex-col">
+                    <div className="text-sm font-bold text-sky-500 mb-2 uppercase tracking-wider">{article.category}</div>
+                    <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-sky-600 transition-colors">{article.title}</h3>
+                    <p className="text-slate-600 font-medium leading-relaxed flex-grow">{article.description}</p>
+                    <div className="mt-6 font-bold text-sky-600 flex items-center">
+                      Read Guide <ArrowLeft className="ml-2 rotate-180 w-4 h-4" />
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {loading ? (
           <div className="flex justify-center py-20">

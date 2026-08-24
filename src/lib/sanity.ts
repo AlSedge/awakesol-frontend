@@ -216,3 +216,18 @@ export async function fetchLanguageResources(): Promise<SanityArticle[]> {
   
   return sanityClient.fetch(query);
 }
+
+// Fetch all language learning articles from Sanity
+export async function fetchLanguageArticles(): Promise<SanityArticle[]> {
+  const query = `*[_type == "languageArticle"] | order(order asc) {
+    _id,
+    title,
+    category,
+    description,
+    body,
+    "imageUrl": image.asset->url,
+    order
+  }`;
+  
+  return sanityClient.fetch(query);
+}
