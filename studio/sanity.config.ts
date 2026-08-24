@@ -43,6 +43,7 @@ export default defineConfig({
           { name: 'image', type: 'image', title: 'Image' },
         ],
       },
+      articleType('languageArticle', 'Language Article'),
       articleType('languageResource', 'Language Resource'),
       articleType('musicResource', 'Music Resource'),
       articleType('dogResource', 'Dog Resource'),

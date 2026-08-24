@@ -34,6 +34,7 @@ const ARTICLE_ROUTES = {
   gardeningArticle: '/nature/gardening/',
   wildlifeArticle: '/nature/wildlife/',
   aiArticle: '/learning/ai/',
+  languageArticle: '/learning/languages/',
 };
 
 async function querySanity(groq) {
