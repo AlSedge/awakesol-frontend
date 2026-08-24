@@ -231,3 +231,18 @@ export async function fetchLanguageArticles(): Promise<SanityArticle[]> {
   
   return sanityClient.fetch(query);
 }
+
+// Fetch all dog training articles from Sanity
+export async function fetchDogArticles(): Promise<SanityArticle[]> {
+  const query = `*[_type == "dogArticle"] | order(order asc) {
+    _id,
+    title,
+    category,
+    description,
+    body,
+    "imageUrl": image.asset->url,
+    order
+  }`;
+  
+  return sanityClient.fetch(query);
+}

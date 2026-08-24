@@ -8,6 +8,7 @@ import Languages from "./pages/Languages";
 import LanguageArticleView from "./pages/LanguageArticleView";
 import Music from "./pages/Music";
 import DogTraining from "./pages/DogTraining";
+import DogArticleView from "./pages/DogArticleView";
 import Books from "./pages/Books";
 import LivingWell from "./pages/LivingWell";
 import Gardening from "./pages/Gardening";
@@ -35,6 +36,7 @@ const App = () => (
         <Route path="/learning/languages/:id" element={<LanguageArticleView />} />
         <Route path="/learning/music" element={<Music />} />
         <Route path="/learning/dogs" element={<DogTraining />} />
+        <Route path="/learning/dogs/:id" element={<DogArticleView />} />
         <Route path="/health/books" element={<Books />} />
         <Route path="/health/living-well" element={<LivingWell />} />
         <Route path="/health/living-well/:id" element={<ArticleView />} />
