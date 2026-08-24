@@ -190,13 +190,36 @@ export function applySeo(meta: SeoMeta, pathname: string) {
 }
 
 // Called by article views once Sanity content has loaded, so each article
-// gets its own title and description (overrides the generic route meta).
-export function applyArticleSeo(title: string, description: string, pathname: string) {
+// gets its own title, description, and Article structured data.
+export function applyArticleSeo(
+  title: string,
+  description: string,
+  pathname: string,
+  dates?: { created?: string; updated?: string }
+) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description || DEFAULT_DESCRIPTION,
+    url: SITE_URL + pathname,
+    image: document.querySelector('meta[property="og:image"]')?.getAttribute('content') || `${SITE_URL}/favicon.svg`,
+    author: { '@type': 'Person', name: 'Alan Sedgwick' },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: { '@type': 'ImageObject', url: `${SITE_URL}/favicon.svg` },
+    },
+    ...(dates?.created ? { datePublished: dates.created } : {}),
+    ...(dates?.updated ? { dateModified: dates.updated } : {}),
+  };
   applySeo(
     {
       title: `${title} | ${SITE_NAME}`,
       description: description || DEFAULT_DESCRIPTION,
       type: 'article',
+      jsonLd,
     },
     pathname
   );

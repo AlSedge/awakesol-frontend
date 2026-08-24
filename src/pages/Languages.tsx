@@ -108,8 +108,7 @@ export default function Languages() {
                     <img 
                       src={resource.imageUrl} 
                       alt={resource.title} 
-                      className="w-full h-full object-cover"
-                    />
+                      className="w-full h-full object-cover" loading="lazy" />
                   </div>
                 ) : (
                   <div className="h-56 w-full bg-sky-50 flex items-center justify-center">

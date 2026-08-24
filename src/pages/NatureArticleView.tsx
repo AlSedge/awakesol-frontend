@@ -30,16 +30,18 @@ export default function NatureArticleView() {
           title,
           category,
           body,
+          _createdAt,
+          _updatedAt,
           "imageUrl": image.asset->url
         }`;
         
-        const clientWithNoCache = sanityClient.withConfig({
-          requestTagPrefix: Date.now().toString(),
-        });
-        const data = await clientWithNoCache.fetch<SanityArticle>(query, { id });
+        const data = await sanityClient.fetch<SanityArticle>(query, { id });
         setArticle(data);
         if (data) {
-          applyArticleSeo(data.title, data.category || '', window.location.pathname);
+          applyArticleSeo(data.title, data.category || '', window.location.pathname, {
+            created: data._createdAt,
+            updated: data._updatedAt,
+          });
         }
       } catch (error) {
         console.error("Error fetching article:", error);

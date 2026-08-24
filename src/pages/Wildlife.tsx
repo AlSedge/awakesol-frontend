@@ -172,7 +172,7 @@ export default function Wildlife() {
 
                       {article.imageUrl && (
                         <div className="w-full aspect-video rounded-2xl overflow-hidden mb-6 shadow-sm border border-slate-100 relative">
-                          <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                         </div>
                       )}
                       

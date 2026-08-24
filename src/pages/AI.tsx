@@ -60,8 +60,7 @@ export default function AI() {
                     <img 
                       src={article.imageUrl} 
                       alt={article.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                   </div>
                 ) : (
                   <div className="h-48 bg-blue-50 flex items-center justify-center">

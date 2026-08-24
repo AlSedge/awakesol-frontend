@@ -60,8 +60,7 @@ export default function BrainHealth() {
                     <img 
                       src={resource.imageUrl} 
                       alt={resource.title} 
-                      className="w-full h-full object-cover"
-                    />
+                      className="w-full h-full object-cover" loading="lazy" />
                   </div>
                 ) : (
                   <div className="h-56 w-full bg-violet-50 flex items-center justify-center">

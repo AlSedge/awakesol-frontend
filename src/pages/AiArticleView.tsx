@@ -14,14 +14,17 @@ export default function AiArticleView() {
     if (id) {
       setLoading(true);
       const query = `*[_type == "aiArticle" && _id == $id][0] {
-        _id, title, category, description, body, "imageUrl": image.asset->url
+        _id, title, category, description, body, _createdAt, _updatedAt, "imageUrl": image.asset->url
       }`;
       
       sanityClient.fetch<SanityArticle>(query, { id })
         .then(data => {
           setArticle(data);
           if (data) {
-            applyArticleSeo(data.title, data.description || '', window.location.pathname);
+            applyArticleSeo(data.title, data.description || '', window.location.pathname, {
+              created: data._createdAt,
+              updated: data._updatedAt,
+            });
           }
         })
         .catch(err => console.error("Error fetching AI article:", err))

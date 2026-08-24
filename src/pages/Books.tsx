@@ -63,7 +63,7 @@ export default function Books() {
                 <div className="flex items-center gap-4 mb-6">
                   {article.imageUrl ? (
                     <div className="w-24 h-32 rounded-lg overflow-hidden shadow-md flex-shrink-0">
-                      <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover" />
+                      <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover" loading="lazy" />
                     </div>
                   ) : (
                     <div className="w-16 h-16 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-500 flex-shrink-0">

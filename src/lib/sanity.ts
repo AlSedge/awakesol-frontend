@@ -5,7 +5,7 @@ const isDev = typeof window !== 'undefined' && window.location.hostname === 'loc
 export const sanityClient = createClient({
   projectId: 'hb5scemv',
   dataset: 'production',
-  useCdn: false,
+  useCdn: true,
   apiVersion: '2024-04-22',
   perspective: 'published',
   ...(isDev && {
@@ -35,6 +35,8 @@ export interface SanityArticle {
   buttonText?: string;
   imageUrl?: string;
   order: number;
+  _createdAt?: string;
+  _updatedAt?: string;
 }
 
 export interface SanityProduct {
@@ -62,11 +64,7 @@ export async function fetchBookArticles(): Promise<SanityArticle[]> {
     order
   }`;
   
-  const clientWithNoCache = sanityClient.withConfig({
-    requestTagPrefix: Date.now().toString(),
-  });
-
-  return clientWithNoCache.fetch(query);
+  return sanityClient.fetch(query);
 }
 
 // Fetch all brain health affiliate resources from Sanity
@@ -83,11 +81,7 @@ export async function fetchBrainResources(): Promise<SanityArticle[]> {
   }`;
   
   // Appending a random tag to the request configuration defeats Vercel's caching
-  const clientWithNoCache = sanityClient.withConfig({
-    requestTagPrefix: Date.now().toString(),
-  });
-
-  return clientWithNoCache.fetch(query);
+  return sanityClient.fetch(query);
 }
 
 // Fetch all living well tips from Sanity
@@ -96,11 +90,7 @@ export async function fetchLivingWellArticles(): Promise<SanityArticle[]> {
     _id, title, category, description, body, link, "imageUrl": image.asset->url, order
   }`;
   
-  const clientWithNoCache = sanityClient.withConfig({
-    requestTagPrefix: Date.now().toString(),
-  });
-
-  return clientWithNoCache.fetch(query);
+  return sanityClient.fetch(query);
 }
 
 // Fetch all gardening articles from Sanity
@@ -116,11 +106,7 @@ export async function fetchGardeningArticles(): Promise<SanityArticle[]> {
     order
   }`;
   
-  const clientWithNoCache = sanityClient.withConfig({
-    requestTagPrefix: Date.now().toString(),
-  });
-
-  return clientWithNoCache.fetch(query);
+  return sanityClient.fetch(query);
 }
 
 // Fetch all wildlife articles from Sanity
@@ -136,11 +122,7 @@ export async function fetchWildlifeArticles(): Promise<SanityArticle[]> {
     order
   }`;
   
-  const clientWithNoCache = sanityClient.withConfig({
-    requestTagPrefix: Date.now().toString(),
-  });
-
-  return clientWithNoCache.fetch(query);
+  return sanityClient.fetch(query);
 }
 
 // Fetch all dog training affiliate resources from Sanity
@@ -156,11 +138,7 @@ export async function fetchDogResources(): Promise<SanityArticle[]> {
     order
   }`;
   
-  const clientWithNoCache = sanityClient.withConfig({
-    requestTagPrefix: Date.now().toString(),
-  });
-
-  return clientWithNoCache.fetch(query);
+  return sanityClient.fetch(query);
 }
 
 // Fetch all music learning affiliate resources from Sanity
@@ -176,11 +154,7 @@ export async function fetchMusicResources(): Promise<SanityArticle[]> {
     order
   }`;
   
-  const clientWithNoCache = sanityClient.withConfig({
-    requestTagPrefix: Date.now().toString(),
-  });
-
-  return clientWithNoCache.fetch(query);
+  return sanityClient.fetch(query);
 }
 
 // Fetch all AI learning articles from Sanity
@@ -196,11 +170,7 @@ export async function fetchAiArticles(): Promise<SanityArticle[]> {
     order
   }`;
   
-  const clientWithNoCache = sanityClient.withConfig({
-    requestTagPrefix: Date.now().toString(),
-  });
-
-  return clientWithNoCache.fetch(query);
+  return sanityClient.fetch(query);
 }
 
 // Fetch the About Page from Sanity
@@ -212,11 +182,7 @@ export async function fetchAboutPage(): Promise<any> {
     "imageUrl": image.asset->url
   }`;
   
-  const clientWithNoCache = sanityClient.withConfig({
-    requestTagPrefix: Date.now().toString(),
-  });
-
-  return clientWithNoCache.fetch(query);
+  return sanityClient.fetch(query);
 }
 // Fetch all gardening affiliate products from Sanity
 export async function fetchGardeningProducts(): Promise<SanityProduct[]> {
@@ -232,11 +198,7 @@ export async function fetchGardeningProducts(): Promise<SanityProduct[]> {
     order
   }`;
 
-  const clientWithNoCache = sanityClient.withConfig({
-    requestTagPrefix: Date.now().toString(),
-  });
-
-  return clientWithNoCache.fetch(query);
+  return sanityClient.fetch(query);
 }
 
 // Fetch all language learning affiliate resources from Sanity
@@ -252,9 +214,5 @@ export async function fetchLanguageResources(): Promise<SanityArticle[]> {
     order
   }`;
   
-  const clientWithNoCache = sanityClient.withConfig({
-    requestTagPrefix: Date.now().toString(),
-  });
-
-  return clientWithNoCache.fetch(query);
+  return sanityClient.fetch(query);
 }
