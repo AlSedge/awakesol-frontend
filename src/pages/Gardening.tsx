@@ -378,7 +378,7 @@ export default function Gardening() {
               <h4 className="text-xl font-bold text-slate-900 mb-2">Ready to dig in?</h4>
               <p className="text-slate-600 mb-6">Check out our recommended starter kits and essential tool checklist.</p>
               <a
-                href="https://www.amazon.co.uk/s?k=gardening+starter+kit+raised+bed+tools&tag=awakenew-21"
+                href="https://www.amazon.co.uk/dp/B00I9DHHGK?tag=awakenew-21"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full transition-colors"

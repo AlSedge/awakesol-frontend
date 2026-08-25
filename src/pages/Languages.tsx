@@ -49,7 +49,7 @@ export default function Languages() {
       title: "Pimsleur Audio Lessons",
       category: "Speaking & Listening",
       description: "Learn to speak conversationally in just 30 days. Perfect for learning while driving or walking your dog.",
-      link: "https://www.amazon.co.uk/s?k=pimsleur+language+audio+cd&tag=awakenew-21",
+      link: "https://www.amazon.co.uk/dp/074350951X?tag=awakenew-21",
       buttonText: "Try for Free",
       imageUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop",
       order: 2
