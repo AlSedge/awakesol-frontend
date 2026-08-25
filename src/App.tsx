@@ -7,6 +7,7 @@ import AiArticleView from "./pages/AiArticleView";
 import Languages from "./pages/Languages";
 import LanguageArticleView from "./pages/LanguageArticleView";
 import Music from "./pages/Music";
+import MusicArticleView from "./pages/MusicArticleView";
 import DogTraining from "./pages/DogTraining";
 import DogArticleView from "./pages/DogArticleView";
 import Books from "./pages/Books";
@@ -35,6 +36,7 @@ const App = () => (
         <Route path="/learning/languages" element={<Languages />} />
         <Route path="/learning/languages/:id" element={<LanguageArticleView />} />
         <Route path="/learning/music" element={<Music />} />
+        <Route path="/learning/music/:id" element={<MusicArticleView />} />
         <Route path="/learning/dogs" element={<DogTraining />} />
         <Route path="/learning/dogs/:id" element={<DogArticleView />} />
         <Route path="/health/books" element={<Books />} />

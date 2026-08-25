@@ -246,3 +246,18 @@ export async function fetchDogArticles(): Promise<SanityArticle[]> {
   
   return sanityClient.fetch(query);
 }
+
+// Fetch all music learning articles from Sanity
+export async function fetchMusicArticles(): Promise<SanityArticle[]> {
+  const query = `*[_type == "musicArticle"] | order(order asc) {
+    _id,
+    title,
+    category,
+    description,
+    body,
+    "imageUrl": image.asset->url,
+    order
+  }`;
+  
+  return sanityClient.fetch(query);
+}
