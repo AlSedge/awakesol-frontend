@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { Bird, ArrowLeft, ArrowRight, Trees, Sun, Leaf, Binoculars, Loader2, ExternalLink } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -206,7 +206,7 @@ export default function Wildlife() {
             
             <div className="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-a:text-orange-600">
               <p className="text-slate-600 leading-relaxed font-medium mb-6">
-                Creating a haven for local birds is one of the most rewarding ways to connect with nature without leaving your home. It doesn't take much space—even an apartment balcony can attract beautiful visitors if you provide the right essentials.
+                Creating a haven for local birds is one of the most rewarding ways to connect with nature without leaving your home. It doesn't take much spaceâ€”even an apartment balcony can attract beautiful visitors if you provide the right essentials.
               </p>
               
               <h3 className="text-2xl font-bold text-slate-900 mt-8 mb-4">1. Provide the Right Food</h3>
@@ -230,7 +230,7 @@ export default function Wildlife() {
               <h4 className="text-xl font-bold text-slate-900 mb-2">Ready to start birding?</h4>
               <p className="text-slate-600 mb-6">Check out our recommended binoculars and field guides for beginners.</p>
               <a
-                href="https://www.amazon.com/s?k=bird+watching+binoculars+field+guide+beginner+kit&tag=awakesol-20"
+                href="https://www.amazon.co.uk/s?k=bird+watching+binoculars+field+guide+beginner+kit&tag=awakenew-21"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-full transition-colors"

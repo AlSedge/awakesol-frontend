@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { ArrowLeft, ExternalLink, Languages as LanguagesIcon, MessageCircle, Ear, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { fetchLanguageResources, fetchLanguageArticles, SanityArticle } from '../lib/sanity';
@@ -39,7 +39,7 @@ export default function Languages() {
       title: "Rosetta Stone Unlimited",
       category: "Complete System",
       description: "The gold standard for language learning. Get lifetime access to 25 languages with their award-winning immersive method.",
-      link: "https://www.amazon.com/Rosetta-Stone-Lifetime-Languages-Activation/dp/B0BQ7BNZFG?tag=awakesol-20",
+      link: "https://www.amazon.co.uk/Rosetta-Stone-Lifetime-Languages-Activation/dp/B0BQ7BNZFG?tag=awakenew-21",
       buttonText: "Start Learning",
       imageUrl: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=800&auto=format&fit=crop",
       order: 1
@@ -49,7 +49,7 @@ export default function Languages() {
       title: "Pimsleur Audio Lessons",
       category: "Speaking & Listening",
       description: "Learn to speak conversationally in just 30 days. Perfect for learning while driving or walking your dog.",
-      link: "https://www.amazon.com/s?k=pimsleur+language+audio+cd&tag=awakesol-20",
+      link: "https://www.amazon.co.uk/s?k=pimsleur+language+audio+cd&tag=awakenew-21",
       buttonText: "Try for Free",
       imageUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop",
       order: 2

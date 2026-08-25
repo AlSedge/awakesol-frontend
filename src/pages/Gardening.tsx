@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { Trees, ArrowLeft, ArrowRight, Sprout, Sun, HeartPulse, Brain, Leaf, Loader2, ExternalLink, Recycle } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -95,33 +95,33 @@ export default function Gardening() {
       order: 1,
       title: "Lomi Electric Composter",
       category: "Countertop",
-      description: "The ultimate kitchen composter. Lomi turns food waste into nutrient-rich dirt at the push of a button — in just hours. Odorless, quiet, and perfect for apartments or homes without yard space.",
-      link: "https://www.amazon.com/dp/B0B5X4Y4GN?tag=awakesol-20",
+      description: "The ultimate kitchen composter. Lomi turns food waste into nutrient-rich dirt at the push of a button â€” in just hours. Odorless, quiet, and perfect for apartments or homes without yard space.",
+      link: "https://www.amazon.co.uk/dp/B0B5X4Y4GN?tag=awakenew-21",
       buttonText: "View on Amazon",
       imageUrl: "https://images.unsplash.com/photo-1589144204843-54b8f22b1f0d?q=80&w=2070&auto=format&fit=crop",
-      review: "★★★★★ 4.8/5 — \"I was skeptical at first, but Lomi has completely changed how our kitchen handles waste. The dirt it produces is genuinely rich and my plants love it.\""
+      review: "â˜…â˜…â˜…â˜…â˜… 4.8/5 â€” \"I was skeptical at first, but Lomi has completely changed how our kitchen handles waste. The dirt it produces is genuinely rich and my plants love it.\""
     },
     {
       _id: "p2",
       order: 2,
       title: "Reencle Indoor Composter",
       category: "Countertop",
-      description: "Uses natural microorganisms to break down food waste silently. Holds more than Lomi and runs continuously — just keep adding scraps. Great for families who cook often.",
-      link: "https://www.amazon.com/dp/B0C7DZQYLM?tag=awakesol-20",
+      description: "Uses natural microorganisms to break down food waste silently. Holds more than Lomi and runs continuously â€” just keep adding scraps. Great for families who cook often.",
+      link: "https://www.amazon.co.uk/dp/B0C7DZQYLM?tag=awakenew-21",
       buttonText: "View on Amazon",
       imageUrl: "https://images.unsplash.com/photo-1592492158937-b2a9e9b0e8c3?q=80&w=2070&auto=format&fit=crop",
-      review: "★★★★☆ 4.5/5 — \"Love that I can just keep adding scraps. The microorganism approach feels more natural than electric drying. Takes a bit longer but worth it.\""
+      review: "â˜…â˜…â˜…â˜…â˜† 4.5/5 â€” \"Love that I can just keep adding scraps. The microorganism approach feels more natural than electric drying. Takes a bit longer but worth it.\""
     },
     {
       _id: "p3",
       order: 3,
       title: "HOTBIN Hot Composter",
       category: "Outdoor",
-      description: "Reaches 40–60°C for fast, efficient composting. Handles cooked food, garden waste, and more. Produces rich compost in 30–90 days — much faster than traditional bins.",
-      link: "https://www.amazon.com/dp/B08L8K8W6R?tag=awakesol-20",
+      description: "Reaches 40â€“60Â°C for fast, efficient composting. Handles cooked food, garden waste, and more. Produces rich compost in 30â€“90 days â€” much faster than traditional bins.",
+      link: "https://www.amazon.co.uk/dp/B08L8K8W6R?tag=awakenew-21",
       buttonText: "View on Amazon",
       imageUrl: "https://images.unsplash.com/photo-1592419044706-39796d40f98c?q=80&w=2070&auto=format&fit=crop",
-      review: "★★★★★ 4.7/5 — \"Finally a hot composter that actually works! I'm getting usable compost in about 6 weeks. Handles all our kitchen waste including cooked food.\""
+      review: "â˜…â˜…â˜…â˜…â˜… 4.7/5 â€” \"Finally a hot composter that actually works! I'm getting usable compost in about 6 weeks. Handles all our kitchen waste including cooked food.\""
     },
     {
       _id: "p4",
@@ -129,10 +129,10 @@ export default function Gardening() {
       title: "FCMP Outdoor Tumbling Composter",
       category: "Outdoor",
       description: "Dual-chamber tumbling design makes turning compost effortless. Sturdy, affordable, and perfect for beginners who want a traditional outdoor setup without the heavy lifting.",
-      link: "https://www.amazon.com/dp/B0013G5GAC?tag=awakesol-20",
+      link: "https://www.amazon.co.uk/dp/B0013G5GAC?tag=awakenew-21",
       buttonText: "View on Amazon",
       imageUrl: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=2070&auto=format&fit=crop",
-      review: "★★★★☆ 4.4/5 — \"Great starter composter. The tumbling feature is a back-saver. Assembly took about an hour but it's been going strong for 2 years now.\""
+      review: "â˜…â˜…â˜…â˜…â˜† 4.4/5 â€” \"Great starter composter. The tumbling feature is a back-saver. Assembly took about an hour but it's been going strong for 2 years now.\""
     }
   ];
 
@@ -172,7 +172,7 @@ export default function Gardening() {
                 The Healing Power of <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Gardening</span>
               </h1>
               <p className="mb-8 text-lg text-slate-600 md:text-xl leading-relaxed font-medium">
-                Gardening is more than just a hobby—it's a profound therapeutic practice. Whether you have a sprawling backyard or a sunny windowsill, cultivating plants offers incredible benefits for both mind and body.
+                Gardening is more than just a hobbyâ€”it's a profound therapeutic practice. Whether you have a sprawling backyard or a sunny windowsill, cultivating plants offers incredible benefits for both mind and body.
               </p>
             </div>
             
@@ -290,7 +290,7 @@ export default function Gardening() {
               <h2 className="text-3xl font-extrabold text-slate-900">Home Composting Essentials</h2>
             </div>
             <p className="text-slate-600 font-medium mb-10 max-w-2xl">
-              Turn kitchen scraps into nutrient-rich soil — right from your countertop or backyard. These are our top picks for getting started with composting at home.
+              Turn kitchen scraps into nutrient-rich soil â€” right from your countertop or backyard. These are our top picks for getting started with composting at home.
             </p>
             <AffiliateNote />
 
@@ -365,7 +365,7 @@ export default function Gardening() {
 
               <h3 className="text-2xl font-bold text-slate-900 mt-8 mb-4">2. Understand Your Light</h3>
               <p className="text-slate-600 leading-relaxed font-medium mb-6">
-                Spend a day observing where the sun hits your yard or balcony. Most vegetables and flowering plants require "full sun," which means 6-8 hours of direct sunlight per day. If you only have a shady spot, don't worry—hostas, ferns, and certain leafy greens thrive in low light.
+                Spend a day observing where the sun hits your yard or balcony. Most vegetables and flowering plants require "full sun," which means 6-8 hours of direct sunlight per day. If you only have a shady spot, don't worryâ€”hostas, ferns, and certain leafy greens thrive in low light.
               </p>
 
               <h3 className="text-2xl font-bold text-slate-900 mt-8 mb-4">3. Invest in the Soil</h3>
@@ -378,7 +378,7 @@ export default function Gardening() {
               <h4 className="text-xl font-bold text-slate-900 mb-2">Ready to dig in?</h4>
               <p className="text-slate-600 mb-6">Check out our recommended starter kits and essential tool checklist.</p>
               <a
-                href="https://www.amazon.com/s?k=gardening+starter+kit+raised+bed+tools&tag=awakesol-20"
+                href="https://www.amazon.co.uk/s?k=gardening+starter+kit+raised+bed+tools&tag=awakenew-21"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full transition-colors"
