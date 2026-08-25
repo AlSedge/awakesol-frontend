@@ -46,6 +46,7 @@ export default defineConfig({
       articleType('languageArticle', 'Language Article'),
       articleType('languageResource', 'Language Resource'),
       articleType('musicResource', 'Music Resource'),
+      articleType('dogArticle', 'Dog Article'),
       articleType('dogResource', 'Dog Resource'),
       articleType('brainResource', 'Brain Resource'),
       articleType('bookArticle', 'Book Article'),

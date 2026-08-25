@@ -35,6 +35,7 @@ const ARTICLE_ROUTES = {
   wildlifeArticle: '/nature/wildlife/',
   aiArticle: '/learning/ai/',
   languageArticle: '/learning/languages/',
+  dogArticle: '/learning/dogs/',
 };
 
 async function querySanity(groq) {
