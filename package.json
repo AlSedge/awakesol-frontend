@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && node scripts/generate-sitemap.mjs && vite build",
-    "studio": "cd studio && npm run dev",
+    "studio": "cd studio && npm run dev -- --port 3334",
     "lint": "eslint .",
     "preview": "vite preview"
   },
