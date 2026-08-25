@@ -3,8 +3,8 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Mail, MessageSquare, Send } from 'lucide-react';
 
-// Replace with the access key from https://web3forms.com (free)
-const WEB3FORMS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+// Web3Forms access key (free, https://web3forms.com)
+const WEB3FORMS_KEY = 'c417ac77-fcf5-42d1-9202-4dd60ea3fa51';
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error';
 
