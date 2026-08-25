@@ -58,12 +58,12 @@ export default function Navigation() {
             <li><button onClick={() => handleScrollTo('nature')} className="hover:text-teal-600 transition-colors">Nature</button></li>
             <li><Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-teal-600 transition-colors">About</Link></li>
             <li>
-              <button
-                onClick={() => handleScrollTo('contact')}
+              <Link
+                to="/contact"
                 className="ml-4 rounded-full bg-teal-600 px-6 py-2.5 text-white transition-all hover:bg-teal-700 hover:shadow-lg hover:shadow-teal-600/20 hover:-translate-y-0.5"
               >
                 Contact Us
-              </button>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -83,12 +83,13 @@ export default function Navigation() {
             <button onClick={() => handleScrollTo('health')} className="hover:text-teal-600 transition-colors">Senior Health</button>
             <button onClick={() => handleScrollTo('nature')} className="hover:text-teal-600 transition-colors">Nature</button>
             <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-teal-600 transition-colors">About</Link>
-            <button
-              onClick={() => handleScrollTo('contact')}
+            <Link
+              to="/contact"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="mt-6 rounded-full bg-teal-600 px-10 py-4 text-xl text-white shadow-xl shadow-teal-600/20"
             >
               Contact Us
-            </button>
+            </Link>
           </nav>
         </div>
       </div>

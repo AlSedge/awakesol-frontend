@@ -21,6 +21,7 @@ import Privacy from "./pages/Privacy";
 import CookiePolicy from "./pages/CookiePolicy";
 import Disclosure from "./pages/Disclosure";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 import Seo from "./components/Seo";
 
 const queryClient = new QueryClient();
@@ -48,6 +49,7 @@ const App = () => (
         <Route path="/nature/wildlife" element={<Wildlife />} />
         <Route path="/nature/wildlife/:id" element={<NatureArticleView />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/cookie-policy-eu" element={<CookiePolicy />} />
         <Route path="/disclosure" element={<Disclosure />} />

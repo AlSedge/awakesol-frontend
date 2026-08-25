@@ -113,6 +113,11 @@ const ROUTE_META: Record<string, SeoMeta> = {
     description:
       'Awakesol is dedicated to quality information on self-learning, senior health, and connecting with nature.',
   },
+  '/contact': {
+    title: 'Contact Awakesol',
+    description:
+      'Questions, feedback, or just want to say hello? Get in touch with Alan, the author behind Awakesol.',
+  },
   '/privacy': {
     title: 'Privacy Policy | Awakesol',
     description: 'How Awakesol collects, uses, and protects your personal information.',

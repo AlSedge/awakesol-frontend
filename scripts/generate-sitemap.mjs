@@ -23,6 +23,7 @@ const STATIC_PAGES = [
   ['/nature/gardening', '0.8', 'weekly'],
   ['/nature/wildlife', '0.8', 'weekly'],
   ['/about', '0.5', 'monthly'],
+  ['/contact', '0.5', 'monthly'],
   ['/privacy', '0.3', 'yearly'],
   ['/cookie-policy-eu', '0.3', 'yearly'],
   ['/disclosure', '0.3', 'yearly'],
