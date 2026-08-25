@@ -36,6 +36,7 @@ const ARTICLE_ROUTES = {
   aiArticle: '/learning/ai/',
   languageArticle: '/learning/languages/',
   dogArticle: '/learning/dogs/',
+  musicArticle: '/learning/music/',
 };
 
 async function querySanity(groq) {
