@@ -69,7 +69,7 @@ export default function Languages() {
       title: "italki Tutoring",
       category: "Live Practice",
       description: "Connect with native speakers for 1-on-1 personalized language lessons at affordable rates.",
-      link: "https://www.italki.com/",
+      link: "https://www.italki.com/affshare?ref=af33430794",
       buttonText: "Find a Tutor",
       imageUrl: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=800&auto=format&fit=crop",
       order: 4
