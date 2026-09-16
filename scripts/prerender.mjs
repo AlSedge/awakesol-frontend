@@ -219,9 +219,11 @@ async function main() {
   for (const [route, meta] of Object.entries({ ...STATIC_PAGES, ...HUBS })) {
     const typeList = meta.types || [];
     const links = [];
+    const items = [];
     for (const t of typeList) {
       for (const a of articlesByType[t] || []) {
         links.push(`<li><a href="${ARTICLE_ROUTES[t]}${esc(a._id)}">${esc(a.title)}</a>${a.description ? ` - ${esc(a.description)}` : ''}</li>`);
+        items.push({ '@type': 'ListItem', position: items.length + 1, name: a.title, url: SITE + ARTICLE_ROUTES[t] + a._id });
       }
     }
     const bodyHtml = [
@@ -236,8 +238,23 @@ async function main() {
       canonical: SITE + route,
       bodyHtml,
       jsonLd: route === '/'
-        ? [{ '@context': 'https://schema.org', '@type': 'Organization', name: 'Awakesol', url: SITE }, { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Awakesol', url: SITE }]
-        : null,
+        ? [
+            { '@context': 'https://schema.org', '@type': 'Organization', name: 'Awakesol', url: SITE },
+            { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Awakesol', url: SITE },
+          ]
+        : [
+            {
+              '@context': 'https://schema.org',
+              '@type': items.length ? 'CollectionPage' : 'WebPage',
+              name: meta.heading,
+              description: meta.description,
+              url: SITE + route,
+              isPartOf: { '@type': 'WebSite', name: 'Awakesol', url: SITE },
+            },
+            ...(items.length
+              ? [{ '@context': 'https://schema.org', '@type': 'ItemList', name: meta.heading, itemListElement: items }]
+              : []),
+          ],
     });
     const dir = route === '/' ? DIST : path.join(DIST, route);
     fs.mkdirSync(dir, { recursive: true });
