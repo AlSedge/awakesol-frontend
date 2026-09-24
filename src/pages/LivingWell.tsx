@@ -60,11 +60,14 @@ export default function LivingWell() {
     if (cat.includes('diet') || cat.includes('nutrition') || cat.includes('food')) {
       return { icon: Apple, light: 'bg-emerald-50', text: 'text-emerald-600' };
     }
-    if (cat.includes('mental') || cat.includes('social') || cat.includes('mind')) {
+    if (cat.includes('mental') || cat.includes('social') || cat.includes('mind') || cat.includes('brain') || cat.includes('cognitive')) {
       return { icon: Heart, light: 'bg-rose-50', text: 'text-rose-600' };
     }
     if (cat.includes('habit') || cat.includes('sleep') || cat.includes('routine')) {
       return { icon: Sun, light: 'bg-amber-50', text: 'text-amber-600' };
+    }
+    if (cat.includes('season')) {
+      return { icon: Sun, light: 'bg-sky-50', text: 'text-sky-600' };
     }
     return { icon: Leaf, light: 'bg-teal-50', text: 'text-teal-600' };
   };
