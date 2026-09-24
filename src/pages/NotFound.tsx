@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
+import NotFoundSeo from '../components/NotFoundSeo';
 
 const NotFound = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 p-4 text-center">
+      <NotFoundSeo />
       <h1 className="text-6xl font-bold text-teal-600 mb-4">404</h1>
       <h2 className="text-2xl font-bold text-slate-800 mb-6">Page Not Found</h2>
       <p className="text-slate-600 mb-8 max-w-md">

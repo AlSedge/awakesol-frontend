@@ -4,6 +4,7 @@ import { ArrowLeft, Dog } from 'lucide-react';
 import { sanityClient, type SanityArticle } from '../lib/sanity';
 import { PortableText } from '@portabletext/react';
 import { applyArticleSeo } from '../lib/seo';
+import NotFoundSeo from '../components/NotFoundSeo';
 
 export default function DogArticleView() {
   const { id } = useParams<{ id: string }>();
@@ -43,6 +44,7 @@ export default function DogArticleView() {
   if (!article) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
+        <NotFoundSeo />
         <h2 className="text-2xl font-bold text-slate-800 mb-4">Guide not found</h2>
         <Link to="/learning/dogs" className="text-amber-600 hover:underline">Return to Dog Training</Link>
       </div>

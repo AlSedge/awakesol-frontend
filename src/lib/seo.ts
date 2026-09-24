@@ -7,6 +7,7 @@ export interface SeoMeta {
   description: string;
   type?: 'website' | 'article';
   jsonLd?: object | null;
+  noindex?: boolean;
 }
 
 export const SITE_URL = 'https://www.awakesol.com';
@@ -192,6 +193,30 @@ export function applySeo(meta: SeoMeta, pathname: string) {
   setMeta('name', 'twitter:description', meta.description);
   setCanonical(SITE_URL + pathname);
   setJsonLd(meta.jsonLd);
+  setRobots(meta.noindex ? 'noindex, follow' : 'index, follow');
+}
+
+function setRobots(content: string) {
+  let el = document.head.querySelector<HTMLMetaElement>('meta[name="robots"]');
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute('name', 'robots');
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', content);
+}
+
+// Used by the 404 page and any "article not found" state: tells Google not to
+// index the page. Prevents these URLs accumulating as "Soft 404" in Search Console.
+export function applyNotFoundSeo(pathname: string) {
+  applySeo(
+    {
+      title: `Page not found | ${SITE_NAME}`,
+      description: 'The page you were looking for could not be found on Awakesol.',
+      noindex: true,
+    },
+    pathname
+  );
 }
 
 // Called by article views once Sanity content has loaded, so each article

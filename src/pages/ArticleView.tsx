@@ -4,6 +4,7 @@ import { ArrowLeft, Activity } from 'lucide-react';
 import { sanityClient, type SanityArticle } from '../lib/sanity';
 import { PortableText } from '@portabletext/react';
 import { applyArticleSeo } from '../lib/seo';
+import NotFoundSeo from '../components/NotFoundSeo';
 
 export default function ArticleView() {
   const { id } = useParams<{ id: string }>();
@@ -44,6 +45,7 @@ export default function ArticleView() {
   if (!article) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
+        <NotFoundSeo />
         <h2 className="text-2xl font-bold text-slate-800 mb-4">Article not found</h2>
         <Link to="/health/living-well" className="text-rose-600 hover:underline">Return to Living Well Tips</Link>
       </div>

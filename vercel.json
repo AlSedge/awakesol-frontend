@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    { "source": "/nature/gardening/1", "destination": "/nature/gardening", "permanent": true },
+    { "source": "/nature/gardening/2", "destination": "/nature/gardening", "permanent": true },
+    { "source": "/nature/gardening/3", "destination": "/nature/gardening", "permanent": true },
+    { "source": "/nature/gardening/4", "destination": "/nature/gardening", "permanent": true },
+    { "source": "/nature/wildlife/1", "destination": "/nature/wildlife", "permanent": true },
+    { "source": "/nature/wildlife/2", "destination": "/nature/wildlife", "permanent": true },
+    { "source": "/health/living-well/1", "destination": "/health/living-well", "permanent": true },
+    { "source": "/health/living-well/2", "destination": "/health/living-well", "permanent": true },
+    { "source": "/health/living-well/3", "destination": "/health/living-well", "permanent": true },
+    { "source": "/health/living-well/4", "destination": "/health/living-well", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ]

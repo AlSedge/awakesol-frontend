@@ -6,6 +6,7 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { PortableText } from '@portabletext/react';
 import { applyArticleSeo } from '../lib/seo';
+import NotFoundSeo from '../components/NotFoundSeo';
 
 export default function NatureArticleView() {
   const { id } = useParams();
@@ -64,6 +65,7 @@ export default function NatureArticleView() {
   if (!article) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 text-center">
+        <NotFoundSeo />
         <h1 className="text-4xl font-extrabold text-slate-900 mb-4">Article Not Found</h1>
         <p className="text-slate-600 mb-8">This article may have been removed or the link is invalid.</p>
         <Link to={backLink} className={`text-${themeColor}-600 font-bold hover:text-${themeColor}-700 flex items-center`}>
