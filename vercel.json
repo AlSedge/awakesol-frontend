@@ -9,7 +9,10 @@
     { "source": "/health/living-well/1", "destination": "/health/living-well", "permanent": true },
     { "source": "/health/living-well/2", "destination": "/health/living-well", "permanent": true },
     { "source": "/health/living-well/3", "destination": "/health/living-well", "permanent": true },
-    { "source": "/health/living-well/4", "destination": "/health/living-well", "permanent": true }
+    { "source": "/health/living-well/4", "destination": "/health/living-well", "permanent": true },
+    { "source": "/books", "destination": "/health/books", "permanent": true },
+    { "source": "/book", "destination": "/health/books", "permanent": true },
+    { "source": "/favicon.ico", "destination": "/favicon.svg", "permanent": false }
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
