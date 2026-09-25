@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && node scripts/generate-sitemap.mjs && vite build && node scripts/prerender.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
+    "build": "tsc -b && node scripts/generate-sitemap.mjs && vite build && node scripts/prerender.mjs && node scripts/indexnow.mjs",
     "studio": "cd studio && npm run dev -- --port 3334",
     "lint": "eslint .",
     "preview": "vite preview"
