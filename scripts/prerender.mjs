@@ -78,6 +78,11 @@ const HUBS = {
     heading: 'Recommended Reading',
     intro: 'Curated books on longevity, cognitive health, personal growth, and finding joy in everyday moments - including our own titles.',
     types: [],
+    // Mirrors the "Reading with the grandchildren?" card in src/pages/Books.tsx, so the
+    // link is present in the static HTML (a reliable crawl path to aloraswift.com).
+    extraLinks: [
+      { href: 'https://www.aloraswift.com/books', label: "Children's picture books by Alora Swift - for reading with the grandchildren" },
+    ],
   },
   '/nature/gardening': {
     title: 'Gardening for Beginners: Tips & Best Products | Awakesol',
@@ -232,7 +237,8 @@ async function main() {
     // Hand-picked cross-links from a hub to a specific article elsewhere on the site
     for (const l of meta.extraLinks || []) {
       links.push(`<li><a href="${l.href}">${esc(l.label)}</a></li>`);
-      items.push({ '@type': 'ListItem', position: items.length + 1, name: l.label, url: SITE + l.href });
+      // extraLinks may point at another site (e.g. aloraswift.com), so only prefix SITE for local paths
+      items.push({ '@type': 'ListItem', position: items.length + 1, name: l.label, url: /^https?:\/\//.test(l.href) ? l.href : SITE + l.href });
     }
     const bodyHtml = [
       `<h1>${esc(meta.heading)}</h1>`,

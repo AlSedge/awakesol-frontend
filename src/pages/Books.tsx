@@ -104,6 +104,31 @@ export default function Books() {
             <p className="text-slate-500 max-w-md mx-auto">We are currently curating the best books for our readers. Check back soon!</p>
           </div>
         )}
+
+        {/* Cross-link: the children's picture books live on their own site (aloraswift.com).
+            Kept in sync with the extraLinks entry in scripts/prerender.mjs, so crawlers see
+            this link in the static HTML too. */}
+        <div className="mt-12 bg-white rounded-3xl p-8 md:p-10 border border-slate-100 shadow-sm">
+          <div className="flex items-start gap-5">
+            <div className="w-14 h-14 rounded-2xl bg-rose-50 flex items-center justify-center text-rose-500 flex-shrink-0">
+              <BookOpen size={28} />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-slate-900 mb-2">Reading with the grandchildren?</h2>
+              <p className="text-slate-600 font-medium leading-relaxed mb-6">
+                Alora Swift writes gentle picture books for ages 3-7 — brave platypuses, lost koala bears and
+                bedtime stories made to be read aloud together. Her books live on her own site.
+              </p>
+              <a
+                href="https://www.aloraswift.com/books"
+                className="inline-flex items-center gap-2 bg-rose-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-rose-600 transition-colors"
+              >
+                See the children&apos;s picture books
+                <ExternalLink size={18} />
+              </a>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   );
