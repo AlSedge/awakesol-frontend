@@ -56,8 +56,10 @@ function xmlEscape(s) {
 
 function buildSitemap(articleEntries) {
   const urls = [];
+  // Static pages are regenerated on every build, so the build date is honest for them.
+  const buildDate = new Date().toISOString().slice(0, 10);
   for (const [loc, priority, freq] of STATIC_PAGES) {
-    urls.push(`  <url>\n    <loc>${SITE}${loc}</loc>\n    <changefreq>${freq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`);
+    urls.push(`  <url>\n    <loc>${SITE}${loc}</loc>\n    <lastmod>${buildDate}</lastmod>\n    <changefreq>${freq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`);
   }
   for (const [url, lastmod] of articleEntries) {
     urls.push(`  <url>\n    <loc>${xmlEscape(url)}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ''}\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`);
