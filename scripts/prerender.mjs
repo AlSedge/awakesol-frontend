@@ -68,6 +68,9 @@ const HUBS = {
     heading: 'Brain Health',
     intro: 'Keep your mind sharp with games, puzzles, and evidence-based cognitive training.',
     types: [],
+    extraLinks: [
+      { href: '/health/living-well/lw-brain-health-after-60', label: 'Brain Health After 60: What Actually Works (and What Does Not)' },
+    ],
   },
   '/health/books': {
     title: 'Best Books for Senior Health & Lifelong Learning | Awakesol',
@@ -225,6 +228,11 @@ async function main() {
         links.push(`<li><a href="${ARTICLE_ROUTES[t]}${esc(a._id)}">${esc(a.title)}</a>${a.description ? ` - ${esc(a.description)}` : ''}</li>`);
         items.push({ '@type': 'ListItem', position: items.length + 1, name: a.title, url: SITE + ARTICLE_ROUTES[t] + a._id });
       }
+    }
+    // Hand-picked cross-links from a hub to a specific article elsewhere on the site
+    for (const l of meta.extraLinks || []) {
+      links.push(`<li><a href="${l.href}">${esc(l.label)}</a></li>`);
+      items.push({ '@type': 'ListItem', position: items.length + 1, name: l.label, url: SITE + l.href });
     }
     const bodyHtml = [
       `<h1>${esc(meta.heading)}</h1>`,

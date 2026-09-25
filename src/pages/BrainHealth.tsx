@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, ExternalLink, Puzzle, Brain, Lightbulb } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ExternalLink, Puzzle, Brain, Lightbulb } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { fetchBrainResources, type SanityArticle } from '../lib/sanity';
 import AffiliateNote from '../components/AffiliateNote';
@@ -43,6 +43,23 @@ export default function BrainHealth() {
             Discover engaging games, challenging puzzles, and scientifically-backed programs designed to enhance cognitive function and memory.
           </p>
           <AffiliateNote />
+        </div>
+
+        <div className="mb-12 bg-slate-900 text-white rounded-3xl p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div>
+            <div className="text-xs font-bold uppercase tracking-widest text-teal-300 mb-3">From our guides</div>
+            <h3 className="text-2xl md:text-3xl font-extrabold mb-3 tracking-tight">Brain Health After 60: What Actually Works</h3>
+            <p className="text-slate-300 font-medium leading-relaxed max-w-2xl">
+              Before you buy anything for your memory, read this. Movement, hearing, blood pressure, sleep and company do more for your thinking than any supplement - and some of the things on sale are simply not worth the money.
+            </p>
+          </div>
+          <Link
+            to="/health/living-well/lw-brain-health-after-60"
+            className="inline-flex items-center justify-center shrink-0 bg-teal-500 text-slate-900 px-6 py-4 rounded-xl font-bold hover:bg-teal-400 transition-colors"
+          >
+            Read the guide
+            <ArrowRight size={18} className="ml-2" />
+          </Link>
         </div>
 
         {loading ? (
