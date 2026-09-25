@@ -94,8 +94,20 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.awakesol.com/health/living-well/lw-brain-health-after-60</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.awakesol.com/health/living-well/lw-fall-proof-home</loc>
     <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.awakesol.com/health/living-well/lw-medical-alert-systems</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -37,8 +37,5 @@
     { "source": "/health/living-well/2", "destination": "/health/living-well", "permanent": true },
     { "source": "/health/living-well/3", "destination": "/health/living-well", "permanent": true },
     { "source": "/health/living-well/4", "destination": "/health/living-well", "permanent": true }
-  ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
   ]
 }

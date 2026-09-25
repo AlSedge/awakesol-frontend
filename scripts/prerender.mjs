@@ -295,7 +295,17 @@ async function main() {
     }
   }
 
-  console.log(`Prerendered ${written} pages`);
+  // 3. 404 page.
+  // Vercel serves dist/404.html - with a real HTTP 404 - for any path that
+  // matches no static file. Every router route is prerendered above, so this
+  // only affects URLs that genuinely do not exist, which previously answered
+  // "200 OK" (soft 404s, 21 of them flagged in Search Console). It is the app
+  // shell, so React still renders the friendly not-found screen, and noindex
+  // keeps it out of search results.
+  const homeHtml = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
+  fs.writeFileSync(path.join(DIST, '404.html'), homeHtml.replace('</head>', '  <meta name="robots" content="noindex" />\n</head>'), 'utf8');
+
+  console.log(`Prerendered ${written} pages + 404.html`);
 }
 
 main().catch((err) => {
