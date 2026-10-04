@@ -10,6 +10,7 @@
     { "source": "/health-tips", "destination": "/health/living-well", "permanent": true },
     { "source": "/books", "destination": "/health/books", "permanent": true },
     { "source": "/book", "destination": "/health/books", "permanent": true },
+    { "source": "/how-to-play-piano-at-home", "destination": "/learning/music/mu-learn-after-50", "permanent": true },
     { "source": "/reviews/:path*", "destination": "/", "permanent": true },
     { "source": "/get-published/:path*", "destination": "/", "permanent": true },
     { "source": "/get-published", "destination": "/", "permanent": true },
