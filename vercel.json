@@ -3,6 +3,7 @@
     { "source": "/cuddles-loses-his-home-childrens-adventure-book", "destination": "https://www.aloraswift.com/books/cuddles-loses-his-home", "permanent": true },
     { "source": "/mens-health-over-65", "destination": "/health/books", "permanent": true },
     { "source": "/mens-health-over-50", "destination": "/health/books", "permanent": true },
+    { "source": "/learn-languages/learn-spanish-at-home", "destination": "/learning/languages/lg-learn-spanish-at-home", "permanent": true },
     { "source": "/learn-languages/:path*", "destination": "/learning/languages", "permanent": true },
     { "source": "/learn-languages", "destination": "/learning/languages", "permanent": true },
     { "source": "/about-us", "destination": "/about", "permanent": true },
