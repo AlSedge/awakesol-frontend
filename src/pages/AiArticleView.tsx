@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Brain } from 'lucide-react';
 import { sanityClient, type SanityArticle } from '../lib/sanity';
 import { PortableText } from '@portabletext/react';
+import { portableTextLinkMarks } from '../components/portableTextComponents';
 import { applyArticleSeo } from '../lib/seo';
 import NotFoundSeo from '../components/NotFoundSeo';
 
@@ -93,6 +94,7 @@ export default function AiArticleView() {
             <PortableText 
               value={article.body} 
               components={{
+              marks: portableTextLinkMarks,
                 types: {
                   image: ({ value }) => {
                     if (!value?.asset?._ref) return null;

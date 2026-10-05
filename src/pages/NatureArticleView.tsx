@@ -5,6 +5,7 @@ import { sanityClient, type SanityArticle } from '../lib/sanity';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { PortableText } from '@portabletext/react';
+import { portableTextComponents } from '../components/portableTextComponents';
 import { applyArticleSeo } from '../lib/seo';
 import NotFoundSeo from '../components/NotFoundSeo';
 
@@ -107,7 +108,9 @@ export default function NatureArticleView() {
 
           <div className={`prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-a:text-${themeColor}-600 prose-img:rounded-3xl hover:prose-a:text-${themeColor}-700`}>
             {article.body ? (
-              <PortableText value={article.body} />
+              <PortableText value={article.body}
+              components={portableTextComponents}
+            />
             ) : (
               <p className="italic text-slate-500">No content provided for this article.</p>
             )}

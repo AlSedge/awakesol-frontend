@@ -232,7 +232,7 @@ export default function Wildlife() {
               <a
                 href="https://www.amazon.co.uk/dp/B09CDNK1LX?tag=awakenew-21"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="sponsored nofollow noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-full transition-colors"
               >
                 View Beginner Resources <ExternalLink size={16} />

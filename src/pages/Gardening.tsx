@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { fetchGardeningArticles, fetchGardeningProducts, type SanityArticle, type SanityProduct } from '../lib/sanity';
 import AffiliateNote from '../components/AffiliateNote';
+import { relFor } from '../lib/affiliate';
 
 export default function Gardening() {
   const [articles, setArticles] = useState<SanityArticle[]>([]);
@@ -333,7 +334,7 @@ export default function Gardening() {
                           </p>
                         )}
                         {product.link && (
-                          <a href={product.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-emerald-600 font-bold text-sm hover:text-emerald-700">
+                          <a href={product.link} target="_blank" rel={relFor(product.link)} className="inline-flex items-center text-emerald-600 font-bold text-sm hover:text-emerald-700">
                             {product.buttonText || "View on Amazon"} <ExternalLink size={16} className="ml-1.5" />
                           </a>
                         )}
@@ -380,7 +381,7 @@ export default function Gardening() {
               <a
                 href="https://www.amazon.co.uk/dp/B00I9DHHGK?tag=awakenew-21"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="sponsored nofollow noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full transition-colors"
               >
                 View Beginner Resources <ExternalLink size={16} />

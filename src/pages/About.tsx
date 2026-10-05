@@ -5,6 +5,7 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { fetchAboutPage } from '../lib/sanity';
 import { PortableText } from '@portabletext/react';
+import { portableTextLinkMarks } from '../components/portableTextComponents';
 
 export default function About() {
   const [content, setContent] = useState<any>(null);
@@ -66,6 +67,7 @@ export default function About() {
                   <PortableText 
                     value={content.body} 
                     components={{
+              marks: portableTextLinkMarks,
                       types: {
                         image: ({ value }) => {
                           if (!value?.asset?._ref) return null;

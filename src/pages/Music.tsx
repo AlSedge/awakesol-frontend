@@ -3,6 +3,7 @@ import { ArrowLeft, ExternalLink, Music as MusicIcon, Guitar, Headphones } from 
 import { Link } from 'react-router-dom';
 import { fetchMusicResources, fetchMusicArticles, SanityArticle } from '../lib/sanity';
 import AffiliateNote from '../components/AffiliateNote';
+import { relFor } from '../lib/affiliate';
 
 export default function Music() {
   const [resources, setResources] = useState<SanityArticle[]>([]);
@@ -131,7 +132,7 @@ export default function Music() {
                     <a 
                       href={resource.link} 
                       target="_blank" 
-                      rel="noopener noreferrer"
+                      rel={relFor(resource.link)}
                       className="inline-flex items-center justify-center w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-bold hover:bg-pink-600 transition-colors group mt-auto"
                     >
                       {resource.buttonText || "Start Learning"}

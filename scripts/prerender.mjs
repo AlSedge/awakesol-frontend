@@ -11,6 +11,22 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(__dirname, '..', 'dist');
 const SITE = 'https://www.awakesol.com';
+
+// Affiliate / monetised hosts - keep in sync with src/lib/affiliate.ts
+const AFFILIATE_HOSTS = ['amazon.co.uk', 'amazon.com', 'amzn.to', 'amzn.eu', 'digistore24.com',
+  'digistore24-app.com', 'checkout-ds24.com', 'clickbank.net', 'hop.clickbank.net'];
+function relFor(href) {
+  try {
+    const url = new URL(href, SITE);
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return '';
+    if (url.origin === new URL(SITE).origin) return '';
+    const host = url.hostname.toLowerCase();
+    const affiliate = AFFILIATE_HOSTS.some((h) => host === h || host.endsWith('.' + h));
+    return affiliate ? 'sponsored nofollow noopener noreferrer' : 'noopener noreferrer';
+  } catch {
+    return '';
+  }
+}
 const API = 'https://hb5scemv.api.sanity.io/v2024-04-22/data/query/production';
 const AUTHOR = 'Alan Sedgwick';
 
@@ -142,7 +158,8 @@ function portableTextToHtml(blocks = []) {
         const cm = c.marks || [];
         if (cm.some((m) => marks[m])) {
           const href = cm.map((m) => marks[m]).find(Boolean);
-          t = `<a href="${esc(href)}">${t}</a>`;
+          const rel = relFor(href);
+          t = `<a href="${esc(href)}"${rel ? ` rel="${rel}"` : ''}>${t}</a>`;
         }
         if (cm.includes('strong')) t = `<strong>${t}</strong>`;
         if (cm.includes('em')) t = `<em>${t}</em>`;

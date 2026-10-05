@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Activity } from 'lucide-react';
 import { sanityClient, type SanityArticle } from '../lib/sanity';
 import { PortableText } from '@portabletext/react';
+import { portableTextComponents } from '../components/portableTextComponents';
 import { applyArticleSeo } from '../lib/seo';
 import NotFoundSeo from '../components/NotFoundSeo';
 
@@ -93,7 +94,8 @@ export default function ArticleView() {
         <article className="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-a:text-blue-700 prose-a:font-bold hover:prose-a:text-blue-500">
           {article.body ? (
             <PortableText 
-              value={article.body} 
+              value={article.body}
+              components={portableTextComponents}
             />
           ) : (
             <p>Content is being updated...</p>

@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, ExternalLink, Puzzle, Brain, Lightbulb } from 'l
 import { Link } from 'react-router-dom';
 import { fetchBrainResources, type SanityArticle } from '../lib/sanity';
 import AffiliateNote from '../components/AffiliateNote';
+import { relFor } from '../lib/affiliate';
 
 export default function BrainHealth() {
   const [resources, setResources] = useState<SanityArticle[]>([]);
@@ -97,7 +98,7 @@ export default function BrainHealth() {
                     <a 
                       href={resource.link} 
                       target="_blank" 
-                      rel="noopener noreferrer"
+                      rel={relFor(resource.link)}
                       className="inline-flex items-center justify-center w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-bold hover:bg-violet-600 transition-colors group mt-auto"
                     >
                       {resource.buttonText || "Try It Now"}

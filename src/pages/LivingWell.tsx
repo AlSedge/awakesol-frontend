@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { fetchLivingWellArticles, type SanityArticle } from '../lib/sanity';
+import { relFor } from '../lib/affiliate';
 
 export default function LivingWell() {
   const [articles, setArticles] = useState<SanityArticle[]>([]);
@@ -145,7 +146,7 @@ export default function LivingWell() {
                       )}
                       
                       {article.link && article.link !== "#" ? (
-                        <a href={article.link} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center font-bold text-sm ${style.text} mt-auto`}>
+                        <a href={article.link} target="_blank" rel={relFor(article.link)} className={`inline-flex items-center font-bold text-sm ${style.text} mt-auto`}>
                           Read Full Article <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
                         </a>
                       ) : (

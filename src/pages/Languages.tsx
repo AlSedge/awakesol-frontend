@@ -3,6 +3,7 @@ import { ArrowLeft, ExternalLink, Languages as LanguagesIcon, MessageCircle, Ear
 import { Link } from 'react-router-dom';
 import { fetchLanguageResources, fetchLanguageArticles, SanityArticle } from '../lib/sanity';
 import AffiliateNote from '../components/AffiliateNote';
+import { relFor } from '../lib/affiliate';
 
 export default function Languages() {
   const [resources, setResources] = useState<SanityArticle[]>([]);
@@ -176,7 +177,7 @@ export default function Languages() {
                     <a 
                       href={resource.link} 
                       target="_blank" 
-                      rel="noopener noreferrer"
+                      rel={relFor(resource.link)}
                       className="inline-flex items-center justify-center w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-bold hover:bg-sky-500 transition-colors group mt-auto"
                     >
                       {resource.buttonText || "Start Learning"}

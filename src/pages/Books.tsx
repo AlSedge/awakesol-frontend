@@ -3,6 +3,7 @@ import { ArrowLeft, BookOpen, ExternalLink, Library } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { fetchBookArticles, type SanityArticle } from '../lib/sanity';
 import AffiliateNote from '../components/AffiliateNote';
+import { relFor } from '../lib/affiliate';
 
 export default function Books() {
   const [articles, setArticles] = useState<SanityArticle[]>([]);
@@ -83,7 +84,7 @@ export default function Books() {
                   <a 
                     href={article.link} 
                     target="_blank" 
-                    rel="noopener noreferrer"
+                    rel={relFor(article.link)}
                     className="inline-flex items-center justify-center w-full bg-indigo-50 text-indigo-700 px-6 py-4 rounded-xl font-bold hover:bg-indigo-600 hover:text-white transition-colors group mt-auto"
                   >
                     View Book Details
