@@ -20,8 +20,8 @@ export default defineConfig(({ mode }) => {
           rewrite: (path) => path.replace(/^\/api\/sanity/, ''),
           ...(token ? { headers: { Authorization: `Bearer ${token}` } } : {}),
           configure: (proxy) => {
-            proxy.on('proxyReq', (proxyReq, req) => console.log('[sanity] ->', req.method, req.url.slice(0, 110)))
-            proxy.on('proxyRes', (proxyRes, req) => console.log('[sanity] <-', proxyRes.statusCode, req.url.slice(0, 70)))
+            proxy.on('proxyReq', (_proxyReq, req) => console.log('[sanity] ->', req.method, req.url?.slice(0, 110)))
+            proxy.on('proxyRes', (proxyRes, req) => console.log('[sanity] <-', proxyRes.statusCode, req.url?.slice(0, 70)))
           },
         },
       },
