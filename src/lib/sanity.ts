@@ -2,12 +2,17 @@ import { createClient } from '@sanity/client';
 
 const isDev = typeof window !== 'undefined' && window.location.hostname === 'localhost';
 
+// Draft preview: on the local dev server, ?preview=1 reads unpublished drafts through the
+// dev proxy (which injects the token). Localhost only, so the flag does nothing on the live
+// site, and without the flag the client behaves exactly as before.
+const previewRequested = isDev && new URLSearchParams(window.location.search).has('preview');
+
 export const sanityClient = createClient({
   projectId: 'hb5scemv',
   dataset: 'production',
-  useCdn: true,
+  useCdn: !previewRequested,
   apiVersion: '2024-04-22',
-  perspective: 'published',
+  perspective: previewRequested ? 'previewDrafts' : 'published',
   ...(isDev && {
     apiHost: `http://localhost:${window.location.port}/api/sanity`,
     useProjectHostname: false,
