@@ -12,6 +12,8 @@ const AFFILIATE_HOSTS = [
   'checkout-ds24.com',
   'clickbank.net',
   'hop.clickbank.net',
+  'italki.com',
+  'babbel.com',
 ];
 
 const SITE_ORIGIN = 'https://www.awakesol.com';
