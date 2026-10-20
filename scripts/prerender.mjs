@@ -13,8 +13,19 @@ const DIST = path.join(__dirname, '..', 'dist');
 const SITE = 'https://www.awakesol.com';
 
 // Affiliate / monetised hosts - keep in sync with src/lib/affiliate.ts
-const AFFILIATE_HOSTS = ['amazon.co.uk', 'amazon.com', 'amzn.to', 'amzn.eu', 'digistore24.com',
-  'digistore24-app.com', 'checkout-ds24.com', 'clickbank.net', 'hop.clickbank.net'];
+const AFFILIATE_HOSTS = [
+  'amazon.co.uk',
+  'amazon.com',
+  'amzn.to',
+  'amzn.eu',
+  'digistore24.com',
+  'digistore24-app.com',
+  'checkout-ds24.com',
+  'clickbank.net',
+  'hop.clickbank.net',
+  'italki.com',
+  'babbel.com',
+];
 function relFor(href) {
   try {
     const url = new URL(href, SITE);
