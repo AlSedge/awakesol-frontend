@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowLeft, ExternalLink, Languages as LanguagesIcon, MessageCircle, Ear, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { fetchLanguageResources, fetchLanguageArticles, SanityArticle } from '../lib/sanity';
@@ -44,16 +44,6 @@ export default function Languages() {
       buttonText: "Start Learning",
       imageUrl: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=800&auto=format&fit=crop",
       order: 1
-    },
-    {
-      _id: "2",
-      title: "Pimsleur Audio Lessons",
-      category: "Speaking & Listening",
-      description: "Learn to speak conversationally in just 30 days. Perfect for learning while driving or walking your dog.",
-      link: "https://www.amazon.co.uk/dp/074350951X?tag=awakenew-21",
-      buttonText: "Try for Free",
-      imageUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop",
-      order: 2
     },
     {
       _id: "3",
