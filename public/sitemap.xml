@@ -91,18 +91,6 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.awakesol.com/health/living-well/266a96cf-ec69-434c-a1bb-f4a86e310218</loc>
-    <lastmod>2026-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.awakesol.com/health/living-well/dab5fced-80c6-4e57-88d3-8f65a9c66c0c</loc>
-    <lastmod>2026-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.awakesol.com/health/living-well/lw-blood-pressure-monitors</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -187,12 +175,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.awakesol.com/nature/wildlife/19a78ebd-8dbe-4712-8c95-235a8362faf4</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.awakesol.com/nature/wildlife/wl-attract-wildlife</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -225,12 +207,6 @@
   <url>
     <loc>https://www.awakesol.com/learning/ai/ai-what-is-ai</loc>
     <lastmod>2026-08-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.awakesol.com/learning/ai/d8af7481-e3c6-4686-9ef5-cb8a40a985f0</loc>
-    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
