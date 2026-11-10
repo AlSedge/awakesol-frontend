@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Trees, ArrowLeft, ArrowRight, Sprout, Sun, HeartPulse, Brain, Leaf, Loader2, ExternalLink, Recycle } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -97,7 +97,7 @@ export default function Gardening() {
       title: "Lomi Electric Composter",
       category: "Countertop",
       description: "The ultimate kitchen composter. Lomi turns food waste into nutrient-rich dirt at the push of a button â€” in just hours. Odorless, quiet, and perfect for apartments or homes without yard space.",
-      link: "https://www.amazon.co.uk/dp/B0B5X4Y4GN?tag=awakenew-21",
+      link: "https://www.amazon.co.uk/dp/B0B5X4Y4GN",
       buttonText: "View on Amazon",
       imageUrl: "https://images.unsplash.com/photo-1589144204843-54b8f22b1f0d?q=80&w=2070&auto=format&fit=crop",
       review: "â˜…â˜…â˜…â˜…â˜… 4.8/5 â€” \"I was skeptical at first, but Lomi has completely changed how our kitchen handles waste. The dirt it produces is genuinely rich and my plants love it.\""
@@ -108,7 +108,7 @@ export default function Gardening() {
       title: "Reencle Indoor Composter",
       category: "Countertop",
       description: "Uses natural microorganisms to break down food waste silently. Holds more than Lomi and runs continuously â€” just keep adding scraps. Great for families who cook often.",
-      link: "https://www.amazon.co.uk/dp/B0C7DZQYLM?tag=awakenew-21",
+      link: "https://www.amazon.co.uk/dp/B0C7DZQYLM",
       buttonText: "View on Amazon",
       imageUrl: "https://images.unsplash.com/photo-1592492158937-b2a9e9b0e8c3?q=80&w=2070&auto=format&fit=crop",
       review: "â˜…â˜…â˜…â˜…â˜† 4.5/5 â€” \"Love that I can just keep adding scraps. The microorganism approach feels more natural than electric drying. Takes a bit longer but worth it.\""
@@ -119,7 +119,7 @@ export default function Gardening() {
       title: "HOTBIN Hot Composter",
       category: "Outdoor",
       description: "Reaches 40â€“60Â°C for fast, efficient composting. Handles cooked food, garden waste, and more. Produces rich compost in 30â€“90 days â€” much faster than traditional bins.",
-      link: "https://www.amazon.co.uk/dp/B08L8K8W6R?tag=awakenew-21",
+      link: "https://www.amazon.co.uk/dp/B08L8K8W6R",
       buttonText: "View on Amazon",
       imageUrl: "https://images.unsplash.com/photo-1592419044706-39796d40f98c?q=80&w=2070&auto=format&fit=crop",
       review: "â˜…â˜…â˜…â˜…â˜… 4.7/5 â€” \"Finally a hot composter that actually works! I'm getting usable compost in about 6 weeks. Handles all our kitchen waste including cooked food.\""
@@ -130,7 +130,7 @@ export default function Gardening() {
       title: "FCMP Outdoor Tumbling Composter",
       category: "Outdoor",
       description: "Dual-chamber tumbling design makes turning compost effortless. Sturdy, affordable, and perfect for beginners who want a traditional outdoor setup without the heavy lifting.",
-      link: "https://www.amazon.co.uk/dp/B0013G5GAC?tag=awakenew-21",
+      link: "https://www.amazon.co.uk/dp/B0013G5GAC",
       buttonText: "View on Amazon",
       imageUrl: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=2070&auto=format&fit=crop",
       review: "â˜…â˜…â˜…â˜…â˜† 4.4/5 â€” \"Great starter composter. The tumbling feature is a back-saver. Assembly took about an hour but it's been going strong for 2 years now.\""
@@ -379,9 +379,9 @@ export default function Gardening() {
               <h4 className="text-xl font-bold text-slate-900 mb-2">Ready to dig in?</h4>
               <p className="text-slate-600 mb-6">Check out our recommended starter kits and essential tool checklist.</p>
               <a
-                href="https://www.amazon.co.uk/dp/B00I9DHHGK?tag=awakenew-21"
+                href="https://www.amazon.co.uk/dp/B00I9DHHGK"
                 target="_blank"
-                rel="sponsored nofollow noopener noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full transition-colors"
               >
                 View Beginner Resources <ExternalLink size={16} />

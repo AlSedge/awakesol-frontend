@@ -40,7 +40,7 @@ export default function Languages() {
       title: "Rosetta Stone Unlimited",
       category: "Complete System",
       description: "The gold standard for language learning. Get lifetime access to 25 languages with their award-winning immersive method.",
-      link: "https://www.amazon.co.uk/Rosetta-Stone-Lifetime-Languages-Activation/dp/B0BQ7BNZFG?tag=awakenew-21",
+      link: "https://www.amazon.co.uk/Rosetta-Stone-Lifetime-Languages-Activation/dp/B0BQ7BNZFG",
       buttonText: "Start Learning",
       imageUrl: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=800&auto=format&fit=crop",
       order: 1

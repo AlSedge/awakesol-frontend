@@ -13,9 +13,9 @@ const DIST = path.join(__dirname, '..', 'dist');
 const SITE = 'https://www.awakesol.com';
 
 // Affiliate / monetised hosts - keep in sync with src/lib/affiliate.ts
+// Amazon links are plain product links now (UK Associates account closed), so
+// amazon hosts are intentionally not listed as affiliate.
 const AFFILIATE_HOSTS = [
-  'amazon.co.uk',
-  'amazon.com',
   'amzn.to',
   'amzn.eu',
   'digistore24.com',

@@ -2,9 +2,9 @@
 // Google asks that affiliate links be marked rel="sponsored"; we add nofollow as
 // well so they pass no ranking signal, while ordinary editorial links are left
 // alone. Keep AFFILIATE_HOSTS in sync with scripts/prerender.mjs.
+// Note: Amazon links are plain product links (no affiliate tag) since the UK
+// Associates account closed, so amazon hosts are deliberately not listed here.
 const AFFILIATE_HOSTS = [
-  'amazon.co.uk',
-  'amazon.com',
   'amzn.to',
   'amzn.eu',
   'digistore24.com',
