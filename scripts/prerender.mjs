@@ -24,6 +24,7 @@ const AFFILIATE_HOSTS = [
   'clickbank.net',
   'hop.clickbank.net',
   'italki.com',
+  'paykstrt.com',
 ];
 function relFor(href) {
   try {

@@ -13,6 +13,7 @@ const AFFILIATE_HOSTS = [
   'clickbank.net',
   'hop.clickbank.net',
   'italki.com',
+  'paykstrt.com',
 ];
 
 const SITE_ORIGIN = 'https://www.awakesol.com';
